@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('profile_img')->default('/upload/profile-avater.png');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('role', ['company', 'candidate'])->default('candidate');
+            $table->enum('role', ['company', 'candidate']);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
