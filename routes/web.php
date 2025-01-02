@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Candidate\CandidateDashboardController;
+use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +33,7 @@ require __DIR__ . '/auth.php';
 
 Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'prefix' => 'candidate', 'as' => 'candidate.'], function () {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [CandidateDashboardController::class, 'index'])->name('dashboard');
 });
 
 
@@ -41,7 +41,5 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
 
 Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix' => 'company', 'as' => 'company.'], function () {
 
-    Route::get('/dashboard', function () {
-        return view('frontend.company-dashboard.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
 });

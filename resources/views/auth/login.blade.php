@@ -42,7 +42,7 @@
                                     <div class="form-group">
                                         <label class="form-label" for="input-3">Email</label>
                                         <input class="form-control" id="input-3" type="email" required=""
-                                            name="email" value="{{ old('email') }}">
+                                            name="email" value="{{ old('email') }}" placeholder="Your Email">
 
                                         @error('email')
                                             <div class="alert alert-danger">{{ $message }}</div>
@@ -59,7 +59,7 @@
                                                 Password</a>
                                         </div>
                                         <input class="form-control" id="input-4" type="password" required=""
-                                            name="password">
+                                            name="password" placeholder="Your password">
 
                                         @error('email')
                                             <div class="alert alert-danger">{{ $message }}</div>

@@ -8,7 +8,7 @@
             <div class="header-nav">
                 <nav class="nav-main-menu">
                     <ul class="main-menu">
-                        <li class="has-children"><a class="active" href="index.html">Home</a></li>
+                        <li class="has-children"><a class="active" href="{{ url('/') }}">Home</a></li>
                         <li class="has-children"><a href="jobs-list.html">Find a Job</a></li>
                         <li class="has-children"><a href="companies-grid.html">Recruiters</a></li>
                         <li class="has-children"><a href="candidates-grid.html">Candidates</a></li>
@@ -31,8 +31,19 @@
             </div>
             <div class="header-right">
                 <div class="block-signin">
-                    <!-- <a class="text-link-bd-btom hover-up" href="page-register.html">Register</a> -->
-                    <a class="btn btn-default btn-shadow ml-40 hover-up" href="{{ route('login') }}">Log in</a>
+                    @guest
+                        <a class="text-link-bd-btom hover-up" href="{{ route('register') }}">Register</a>
+                        <a class="btn btn-default btn-shadow ml-40 hover-up" href="{{ route('login') }}">Log in</a>
+                    @endguest
+                    @auth
+                        @if (auth()->user()->role === 'candidate')
+                            <a class="btn btn-default btn-shadow ml-40 hover-up"
+                                href="{{ route('candidate.dashboard') }}">ca Dashboard</a>
+                        @elseif(auth()->user()->role === 'company')
+                            <a class="btn btn-default btn-shadow ml-40 hover-up" href="{{ route('company.dashboard') }}">co
+                                Dashboard</a>
+                        @endif
+                    @endauth
                 </div>
             </div>
         </div>
