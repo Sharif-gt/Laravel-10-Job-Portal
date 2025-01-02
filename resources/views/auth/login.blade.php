@@ -53,7 +53,11 @@
                                 <!-- Password -->
                                 <div class="col-xl-12">
                                     <div class="form-group">
-                                        <label class="form-label" for="input-4">Password</label>
+                                        <div class="d-flex justify-content-between">
+                                            <label class="form-label" for="input-4">Password</label>
+                                            <a href="{{ route('password.request') }}" class="text-primary">Forgot
+                                                Password</a>
+                                        </div>
                                         <input class="form-control" id="input-4" type="password" required=""
                                             name="password">
 
