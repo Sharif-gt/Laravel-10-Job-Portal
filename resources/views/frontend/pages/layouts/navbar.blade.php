@@ -38,10 +38,10 @@
                     @auth
                         @if (auth()->user()->role === 'candidate')
                             <a class="btn btn-default btn-shadow ml-40 hover-up"
-                                href="{{ route('candidate.dashboard') }}">ca Dashboard</a>
+                                href="{{ route('candidate.dashboard') }}">Dashboard</a>
                         @elseif(auth()->user()->role === 'company')
-                            <a class="btn btn-default btn-shadow ml-40 hover-up" href="{{ route('company.dashboard') }}">co
-                                Dashboard</a>
+                            <a class="btn btn-default btn-shadow ml-40 hover-up"
+                                href="{{ route('company.dashboard') }}">Dashboard</a>
                         @endif
                     @endauth
                 </div>

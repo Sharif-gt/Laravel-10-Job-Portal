@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Candidate\CandidateDashboardController;
 use App\Http\Controllers\Company\CompanyDashboardController;
+use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -41,5 +42,9 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
 
 Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix' => 'company', 'as' => 'company.'], function () {
 
+    /** Dashboard */
     Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
+
+    /** Profile */
+    Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile');
 });

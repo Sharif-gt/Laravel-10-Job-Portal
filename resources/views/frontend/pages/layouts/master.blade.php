@@ -16,6 +16,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="">
     <link href="{{ asset('frontend/assets/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker3.min.css">
+
     <title>Job Portal</title>
 </head>
 
@@ -147,7 +150,12 @@
     <script src="{{ asset('frontend/assets/js/plugins/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/Font-Awesome.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/counterup.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="{{ asset('frontend/assets/js/main.js?v=4.1') }}"></script>
+
+    <script>
+        $('.datepicker').datepicker();
+    </script>
 </body>
 
 </html>
