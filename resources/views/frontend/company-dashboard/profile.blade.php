@@ -37,10 +37,10 @@
                                 aria-selected="false">Founding Info</button>
                         </li>
                         <!-- <li class="nav-item" role="presentation">
-                                                                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                                                                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                                                                                    aria-selected="false">Account Setting</button>
-                                                                            </li>  -->
+                                                                                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                                                                                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                                                                                                    aria-selected="false">Account Setting</button>
+                                                                                            </li>  -->
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
 
@@ -137,16 +137,22 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
 
-                            <form action="">
+                            <form method="POST" action="{{ route('company.profile.founding.info') }}">
+                                @csrf
+
                                 <div class="row">
                                     <!-- Industry Type -->
                                     <div class="col-md-4">
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Industry Type *</label>
                                             <select class="form-control form-icons select-active" name="industry_type_id">
-                                                <option>Select</option>
-                                                <option>test1</option>
+                                                <option value="">Select</option>
+                                                <option value="0">test1</option>
                                             </select>
+
+                                            @error('industry_type_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Organization Type -->
@@ -155,9 +161,13 @@
                                             <label class="font-sm color-text-mutted mb-10">Organization Type *</label>
                                             <select class="form-control form-icons select-active"
                                                 name="organization_type_id">
-                                                <option>Select</option>
-                                                <option>test1</option>
+                                                <option value="">Select</option>
+                                                <option value="0">test1</option>
                                             </select>
+
+                                            @error('organization_type_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Team Size -->
@@ -165,23 +175,37 @@
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Team Size *</label>
                                             <select class="form-control form-icons select-active" name="team_size_id">
-                                                <option>Select</option>
-                                                <option>test1</option>
+                                                <option value="">Select</option>
+                                                <option value="0">test1</option>
                                             </select>
+
+                                            @error('team_size_id')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Email -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Email *</label>
-                                            <input class="form-control" name="email" type="email" value="">
+                                            <input class="form-control" name="email" type="email"
+                                                value="{{ $companieInfo?->email }}">
+
+                                            @error('email')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Phone -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Phone *</label>
-                                            <input class="form-control" name="phone" type="text" value="">
+                                            <input class="form-control" name="phone" type="text"
+                                                value="{{ $companieInfo?->phone }}">
+
+                                            @error('phone')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Establishment Date -->
@@ -189,14 +213,24 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Establishment Date *</label>
                                             <input class="form-control datepicker" name="establishment_date"
-                                                type="text" value="" placeholder="mm/dd/yyyy">
+                                                type="text" value="{{ $companieInfo?->establishment_date }}"
+                                                placeholder="yyyy/mm/dd">
+
+                                            @error('establishment_date')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Website Link -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Website Link</label>
-                                            <input class="form-control" name="website" type="text" value="">
+                                            <input class="form-control" name="website" type="text"
+                                                value="{{ $companieInfo?->website }}">
+
+                                            @error('website')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Country -->
@@ -204,9 +238,13 @@
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">Country *</label>
                                             <select class="form-control form-icons select-active" name="country">
-                                                <option>Select</option>
-                                                <option>test1</option>
+                                                <option value="">Select</option>
+                                                <option value="0">test1</option>
                                             </select>
+
+                                            @error('country')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- State -->
@@ -214,9 +252,13 @@
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">State</label>
                                             <select class="form-control form-icons select-active" name="state">
-                                                <option>Select</option>
-                                                <option>test1</option>
+                                                <option value="">Select</option>
+                                                <option value="0">test1</option>
                                             </select>
+
+                                            @error('state')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- City -->
@@ -224,23 +266,37 @@
                                         <div class="form-group select-style">
                                             <label class="font-sm color-text-mutted mb-10">City</label>
                                             <select class="form-control form-icons select-active" name="city">
-                                                <option>Select</option>
-                                                <option>test1</option>
+                                                <option value="">Select</option>
+                                                <option value="0">test1</option>
                                             </select>
+
+                                            @error('city')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Address -->
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Address</label>
-                                            <input class="form-control" name="address" type="text" value="">
+                                            <input class="form-control" name="address" type="text"
+                                                value="{{ $companieInfo?->address }}">
+
+                                            @error('address')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Map Link -->
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Map Link</label>
-                                            <input class="form-control" name="map_link" type="text" value="">
+                                            <input class="form-control" name="map_link" type="text"
+                                                value="{{ $companieInfo?->map_link }}">
+
+                                            @error('map_link')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -257,7 +313,7 @@
 
                         <!--Account Setting -->
                         <!--<div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                                                                    aria-labelledby="pills-contact-tab">hhhh</div> -->
+                                                                                                    aria-labelledby="pills-contact-tab">hhhh</div> -->
                     </div>
                 </div>
             </div>
