@@ -37,10 +37,10 @@
                                 aria-selected="false">Founding Info</button>
                         </li>
                         <!-- <li class="nav-item" role="presentation">
-                                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                                                data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                                                                aria-selected="false">Account Setting</button>
-                                                        </li>  -->
+                                                                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                                                                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                                                                                    aria-selected="false">Account Setting</button>
+                                                                            </li>  -->
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
 
@@ -54,6 +54,7 @@
                                 <div class="row">
                                     <!-- Logo -->
                                     <div class="col-md-6">
+                                        <x-image-preview :height="200" :width="200" :source="$companieInfo?->logo" />
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Logo *</label>
                                             <input class="form-control" name="logo" type="file" value="">
@@ -65,6 +66,7 @@
                                     </div>
                                     <!-- Banner -->
                                     <div class="col-md-6">
+                                        <x-image-preview :height="200" :width="300" :source="$companieInfo?->banner" />
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Banner *</label>
                                             <input class="form-control" name="banner" type="file" value="">
@@ -255,7 +257,7 @@
 
                         <!--Account Setting -->
                         <!--<div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                                                aria-labelledby="pills-contact-tab">hhhh</div> -->
+                                                                                    aria-labelledby="pills-contact-tab">hhhh</div> -->
                     </div>
                 </div>
             </div>

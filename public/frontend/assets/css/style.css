@@ -9946,3 +9946,8 @@ footer .color-text-paragraph {
     border-radius: var(--bs-nav-pills-border-radius);
     color: var(--colorBlack);
 }
+
+/** Laravel Notify css */
+.notify {
+    z-index: 9999 !important;
+}
