@@ -37,10 +37,10 @@
                                 aria-selected="false">Founding Info</button>
                         </li>
                         <!-- <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
-                                        aria-selected="false">Account Setting</button>
-                                </li>  -->
+                                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                                                data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                                                                aria-selected="false">Account Setting</button>
+                                                        </li>  -->
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
 
@@ -48,13 +48,19 @@
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab">
 
-                            <form action="">
+                            <form method="POST" action="{{ route('company.profile.info') }}" enctype="multipart/form-data">
+                                @csrf
+
                                 <div class="row">
                                     <!-- Logo -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Logo *</label>
                                             <input class="form-control" name="logo" type="file" value="">
+
+                                            @error('logo')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Banner -->
@@ -62,34 +68,56 @@
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Banner *</label>
                                             <input class="form-control" name="banner" type="file" value="">
+
+                                            @error('banner')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- User Name -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">User Name *</label>
-                                            <input class="form-control" name="username" type="text" value="">
+                                            <input class="form-control" name="username" type="text"
+                                                value="{{ $companieInfo?->username }}">
+
+                                            @error('username')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Company Name -->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Name *</label>
-                                            <input class="form-control" name="name" type="text" value="">
+                                            <input class="form-control" name="name" type="text"
+                                                value="{{ $companieInfo?->name }}">
+
+                                            @error('name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Company Bio -->
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Bio *</label>
-                                            <textarea name="bio" id="" class=""></textarea>
+                                            <textarea name="bio" id="" class="">{{ $companieInfo?->bio }}</textarea>
+
+                                            @error('bio')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <!-- Company Vision -->
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="font-sm color-text-mutted mb-10">Company Vision *</label>
-                                            <textarea name="vision" id="" class=""></textarea>
+                                            <textarea name="vision" id="" class="">{{ $companieInfo?->vision }}</textarea>
+
+                                            @error('vision')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +132,8 @@
                         </div>
 
                         <!--Founding Info -->
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
 
                             <form action="">
                                 <div class="row">
@@ -226,7 +255,7 @@
 
                         <!--Account Setting -->
                         <!--<div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                                        aria-labelledby="pills-contact-tab">hhhh</div> -->
+                                                                aria-labelledby="pills-contact-tab">hhhh</div> -->
                     </div>
                 </div>
             </div>
