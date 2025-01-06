@@ -48,6 +48,13 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="card-footer text-right">
+                            <nav class="d-inline-block">
+                                @if ($data->hasPages())
+                                    {{ $data->links() }}
+                                @endif
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
