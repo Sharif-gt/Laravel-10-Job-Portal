@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Industry;
 use App\Services\Notify;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -30,7 +31,7 @@ class IndustryTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'max:255', 'unique:industries,name']
@@ -50,27 +51,30 @@ class IndustryTypeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $industy_data = Industry::findOrFail($id);
+        return view('admin.industry.edit', compact('industy_data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //
+        $request->validate([
+            'name' => ['required', 'max:255', 'unique:industries,name, $id']
+        ]);
+
+        Industry::findOrFail($id)->update([
+            "name" => $request->name
+        ]);
+
+        Notify::updatedNotification();
+
+        return redirect()->route('admin.industry-type.index');
     }
 
     /**

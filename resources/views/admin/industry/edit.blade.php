@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Create Industry</h1>
+            <h1>Update Industry Type</h1>
         </div>
 
         <div class="section-body">
@@ -12,16 +12,17 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <h4>Create Industry</h4>
+                            <h4>Update Industry</h4>
                         </div>
-                        <form action="{{ route('admin.industry-type.store') }}" method="POST">
+                        <form action="{{ route('admin.industry-type.update', $industy_data->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
 
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Industry Name</label>
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                        required="">
+                                    <input type="text" class="form-control" name="name"
+                                        value="{{ $industy_data->name }}" required="">
 
                                     @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
@@ -29,12 +30,13 @@
                                 </div>
                             </div>
                             <div class="card-footer text-left">
-                                <button class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 @endsection
