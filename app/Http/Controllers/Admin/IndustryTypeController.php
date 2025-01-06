@@ -53,6 +53,11 @@ class IndustryTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    public function show() {}
+
+    /**
+     *  editing the specified resource.
+     */
     public function edit(string $id): View
     {
         $industy_data = Industry::findOrFail($id);
@@ -82,6 +87,15 @@ class IndustryTypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            Industry::findOrFail($id)->delete();
+
+            Notify::deletedNotification();
+            return response(['message' => 'success'], 200);
+        } catch (\Exception $e) {
+            logger($e);
+
+            return response(['message' => 'Something went wrong. Please try again!'], 500);
+        }
     }
 }
