@@ -11,6 +11,7 @@
             </li>
             <li class="menu-header">Starter</li>
 
+            <!-- Industru Type -->
             <li>
                 <a class="nav-link" href="{{ route('admin.industry-type.index') }}">
                     {{-- <i class="far fa-square"></i> --}}
@@ -18,14 +19,24 @@
                     <span>Industru Type</span>
                 </a>
             </li>
+            <!-- Organization Type -->
+            <li>
+                <a class="nav-link" href="{{ route('admin.organization-type.index') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Organization Type</span>
+                </a>
+            </li>
+
             {{-- <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
                 </ul>
-            </li>
-            <li>
+            </li> --}}
+
+            {{-- <li>
                 <a class="nav-link" href="blank.html">
                     <i class="far fa-square"></i>
                     <span>Blank Page</span>
