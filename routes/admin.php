@@ -8,9 +8,11 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
+use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\StateController;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +56,11 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** States Routs */
     Route::resource('state', StateController::class);
+
+    /** City Routs */
+    Route::resource('cities', CityController::class);
+    /** City AJAX Routs */
+    Route::get('get-states/{country_id}', [LocationAjaxController::class, 'locationAjax'])->name('get-states');
 
 
     // Route::get('verify-email', EmailVerificationPromptController::class)

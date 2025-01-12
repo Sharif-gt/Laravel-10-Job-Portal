@@ -36,6 +36,7 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.country.index') }}">Country</a></li>
                     <li><a class="nav-link" href="{{ route('admin.state.index') }}">States</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.cities.index') }}">Cities</a></li>
                 </ul>
             </li>
 
