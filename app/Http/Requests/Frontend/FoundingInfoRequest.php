@@ -28,10 +28,10 @@ class FoundingInfoRequest extends FormRequest
             'email' => ['required', 'email'],
             'phone' => ['required'],
             'establishment_date' => ['required', 'date'],
-            'website' => ['active_url'],
+            'website' => ['nullable', 'active_url'],
             'country' => ['required', 'integer'],
-            'state' => ['nullable'],
-            'city' => ['nullable'],
+            'state' => ['nullable', 'integer'],
+            'city' => ['nullable', 'integer'],
             'address' => ['string', 'max:255'],
             'map_link' => ['nullable'],
         ];

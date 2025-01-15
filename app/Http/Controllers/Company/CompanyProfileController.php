@@ -5,7 +5,14 @@ namespace App\Http\Controllers\Company;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CompanyInfoUpdateRequest;
 use App\Http\Requests\Frontend\FoundingInfoRequest;
+use App\Models\City;
 use App\Models\Companie;
+use App\Models\Country;
+use App\Models\Industry;
+use App\Models\Organization;
+use App\Models\State;
+use App\Models\TeamSize;
+use App\Services\Notify;
 use App\Traits\FileImageUploadTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,8 +25,14 @@ class CompanyProfileController extends Controller
     public function index(): View
     {
         $companieInfo = Companie::where('user_id', auth()->user()->id)->first();
+        $Industrys = Industry::all();
+        $organizations = Organization::all();
+        $teamSize = TeamSize::all();
+        $countries = Country::all();
+        $states = State::select('id', 'name', 'country_id')->where('country_id', $companieInfo->country)->get();
+        $cities = City::select('id', 'name', 'state_id')->where('state_id', $companieInfo->state)->get();
 
-        return view('frontend.company-dashboard.profile', compact('companieInfo'));
+        return view('frontend.company-dashboard.profile', compact('companieInfo', 'Industrys', 'organizations', 'teamSize', 'countries', 'states', 'cities'));
     }
 
     public function updateCompanyInfo(CompanyInfoUpdateRequest $request): RedirectResponse
@@ -44,7 +57,7 @@ class CompanyProfileController extends Controller
             $data
         );
 
-        notify()->success('Updated Successfully', 'Success');
+        Notify::updatedNotification();
         return redirect()->back();
     }
 
@@ -68,7 +81,7 @@ class CompanyProfileController extends Controller
             ]
         );
 
-        notify()->success('Updated Successfully', 'Success');
+        Notify::updatedNotification();
         return redirect()->back();
     }
 }

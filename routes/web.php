@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Candidate\CandidateDashboardController;
+use App\Http\Controllers\Company\AjaxRequestController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -39,6 +40,9 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
 
 
 /* company dashboard */
+/** Company AJAX Request Route */
+Route::get('get-states/{country_id}', [AjaxRequestController::class, 'stateRequest'])->name('get-states');
+Route::get('get-cities/{state_id}', [AjaxRequestController::class, 'citysRequest'])->name('get-cities');
 
 Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix' => 'company', 'as' => 'company.'], function () {
 
