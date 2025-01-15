@@ -57,6 +57,13 @@ class CompanyProfileController extends Controller
             $data
         );
 
+        if (companyProfileCompletion()) {
+            $companyProfile = Companie::where('user_id', auth()->user()->id)->first();
+            $companyProfile->profile_completion = 1;
+            $companyProfile->visibility = 1;
+            $companyProfile->save();
+        }
+
         Notify::updatedNotification();
         return redirect()->back();
     }
@@ -80,6 +87,13 @@ class CompanyProfileController extends Controller
                 'map_link' => $request->map_link
             ]
         );
+
+        if (companyProfileCompletion()) {
+            $companyProfile = Companie::where('user_id', auth()->user()->id)->first();
+            $companyProfile->profile_completion = 1;
+            $companyProfile->visibility = 1;
+            $companyProfile->save();
+        }
 
         Notify::updatedNotification();
         return redirect()->back();
