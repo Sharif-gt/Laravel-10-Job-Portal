@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
+use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\StateController;
@@ -61,6 +62,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::resource('cities', CityController::class);
     /** City AJAX Routs */
     Route::get('get-states/{country_id}', [LocationAjaxController::class, 'locationAjax'])->name('get-states');
+
+    /** Languages Routs */
+    Route::resource('languages', LanguageController::class);
 
 
     // Route::get('verify-email', EmailVerificationPromptController::class)

@@ -28,6 +28,16 @@
                 </a>
             </li>
 
+            <!-- Candidate Attributes -->
+            <li class="dropdown {{ sidebarActive(['admin.languages.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Candidate Attributes</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ sidebarActive(['admin.languages.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.languages.index') }}">Languages</a></li>
+                </ul>
+            </li>
+
             <!-- All Locations -->
 
             <li class="dropdown {{ sidebarActive(['admin.country.*', 'admin.state.*', 'admin.cities.*']) }}">
