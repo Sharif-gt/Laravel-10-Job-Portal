@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Language;
+use App\Models\Profession;
 use App\Services\Notify;
 use App\Traits\Searchable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class LanguageController extends Controller
+class ProfessionController extends Controller
 {
     use Searchable;
     /**
@@ -19,11 +18,11 @@ class LanguageController extends Controller
      */
     public function index(): View
     {
-        $data = Language::query();
+        $data = Profession::query();
         $this->search($data, ['name']);
-        $languages = $data->paginate(20);
+        $Professions = $data->paginate(20);
 
-        return view('admin.language.index', compact('languages'));
+        return view('admin.profession.index', compact('Professions'));
     }
 
     /**
@@ -31,7 +30,7 @@ class LanguageController extends Controller
      */
     public function create(): View
     {
-        return view('admin.language.create');
+        return view('admin.profession.create');
     }
 
     /**
@@ -40,15 +39,15 @@ class LanguageController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'max:255', 'unique:languages,name']
+            'name' => ['required', 'max:255', 'unique:professions,name']
         ]);
 
-        Language::create([
+        Profession::create([
             'name' => $request->name
         ]);
 
         Notify::createdNotification();
-        return to_route('admin.languages.index');
+        return to_route('admin.professions.index');
     }
 
     /**
@@ -56,8 +55,8 @@ class LanguageController extends Controller
      */
     public function edit(string $id): View
     {
-        $languages = Language::findOrFail($id);
-        return view('admin.language.edit', compact('languages'));
+        $professions = Profession::findOrFail($id);
+        return view('admin.profession.edit', compact('professions'));
     }
 
     /**
@@ -66,24 +65,24 @@ class LanguageController extends Controller
     public function update(Request $request, string $id): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'max:255', 'unique:languages,name,' . $id]
+            'name' => ['required', 'max:255', 'unique:professions,name,' . $id]
         ]);
 
-        Language::findOrFail($id)->update([
+        Profession::findOrFail($id)->update([
             'name' => $request->name
         ]);
 
         Notify::updatedNotification();
-        return to_route('admin.languages.index');
+        return to_route('admin.professions.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): Response
+    public function destroy(string $id)
     {
         try {
-            Language::findOrFail($id)->delete();
+            Profession::findOrFail($id)->delete();
 
             Notify::deletedNotification();
             return response(['message' => 'success'], 200);

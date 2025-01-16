@@ -29,12 +29,14 @@
             </li>
 
             <!-- Candidate Attributes -->
-            <li class="dropdown {{ sidebarActive(['admin.languages.*']) }}">
+            <li class="dropdown {{ sidebarActive(['admin.languages.*', 'admin.professions.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Candidate Attributes</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ sidebarActive(['admin.languages.*']) }}"><a class="nav-link"
                             href="{{ route('admin.languages.index') }}">Languages</a></li>
+                    <li class="{{ sidebarActive(['admin.professions.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.professions.index') }}">Profession</a></li>
                 </ul>
             </li>
 

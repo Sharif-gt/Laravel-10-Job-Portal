@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
+use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\StateController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Languages Routs */
     Route::resource('languages', LanguageController::class);
+
+    /** Profession Routs */
+    Route::resource('professions', ProfessionController::class);
 
 
     // Route::get('verify-email', EmailVerificationPromptController::class)
