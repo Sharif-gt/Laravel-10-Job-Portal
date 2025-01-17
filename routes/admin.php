@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** Profession Routs */
     Route::resource('professions', ProfessionController::class);
 
+    /** Skills Routs */
+    Route::resource('skills', SkillController::class);
 
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //     ->name('verification.notice');
