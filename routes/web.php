@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Candidate\CandidateDashboardController;
+use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\Company\AjaxRequestController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyProfileController;
@@ -36,6 +37,7 @@ require __DIR__ . '/auth.php';
 Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'prefix' => 'candidate', 'as' => 'candidate.'], function () {
 
     Route::get('/dashboard', [CandidateDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile');
 });
 
 

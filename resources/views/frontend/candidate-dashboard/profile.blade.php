@@ -22,101 +22,121 @@
             <div class="row">
 
                 <!-- Sideber -->
-                @include('frontend.company-dashboard.layouts.sidebar')
+                @include('frontend.candidate-dashboard.layouts.sidebar')
 
                 <div class="col-lg-9 col-md-8 col-sm-12 col-12 mb-50">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">Company Info</button>
+                                aria-selected="true">Basic</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                                aria-selected="false">Founding Info</button>
+                                aria-selected="false">Profile</button>
                         </li>
-                        {{-- <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-contact-tab"
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                                aria-selected="false">Experience & Education</button>
+                        </li>
+                        <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-contact-tab"
                                 data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                 aria-controls="pills-contact" aria-selected="false">Account Setting</button>
-                        </li> --}}
+                        </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
 
-                        <!-- Company Info -->
+                        <!-- Basic info -->
+
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab">
 
-                            <form method="POST" action="{{ route('company.profile.info') }}" enctype="multipart/form-data">
+                            <form method="POST" action="" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row">
-                                    <!-- Logo -->
+                                    <!-- Profile Picture -->
                                     <div class="col-md-6">
-                                        <x-image-preview :height="200" :width="200" :source="$companieInfo?->logo" />
+                                        {{-- <x-image-preview :height="200" :width="200" :source="$companieInfo?->logo" /> --}}
                                         <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Logo *</label>
-                                            <input class="form-control" name="logo" type="file" value="">
+                                            <label class="font-sm color-text-mutted mb-10">Profile Picture *</label>
+                                            <input class="form-control" name="image" type="file" value="">
 
-                                            @error('logo')
+                                            @error('image')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <!-- Banner -->
+                                    <!-- CV -->
                                     <div class="col-md-6">
-                                        <x-image-preview :height="200" :width="300" :source="$companieInfo?->banner" />
+                                        {{-- <x-image-preview :height="200" :width="300" :source="$companieInfo?->banner" /> --}}
                                         <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Banner *</label>
-                                            <input class="form-control" name="banner" type="file" value="">
+                                            <label class="font-sm color-text-mutted mb-10">CV</label>
+                                            <input class="form-control" name="cv" type="file" value="">
 
-                                            @error('banner')
+                                            @error('cv')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <!-- User Name -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">User Name *</label>
-                                            <input class="form-control" name="username" type="text"
-                                                value="{{ $companieInfo?->username }}">
-
-                                            @error('username')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!-- Company Name -->
+                                    <!-- Full Name -->
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Company Name *</label>
-                                            <input class="form-control" name="name" type="text"
-                                                value="{{ $companieInfo?->name }}">
+                                            <label class="font-sm color-text-mutted mb-10">Full Name *</label>
+                                            <input class="form-control" name="full_name" type="text" value="">
 
-                                            @error('name')
+                                            @error('full_name')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <!-- Company Bio -->
-                                    <div class="col-md-12">
+                                    <!-- Title -->
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Company Bio *</label>
-                                            <textarea name="bio" id="" class="">{{ $companieInfo?->bio }}</textarea>
+                                            <label class="font-sm color-text-mutted mb-10">Title</label>
+                                            <input class="form-control" name="title" type="text" value="">
 
-                                            @error('bio')
+                                            @error('title')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <!-- Company Vision -->
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="font-sm color-text-mutted mb-10">Company Vision *</label>
-                                            <textarea name="vision" id="" class="">{{ $companieInfo?->vision }}</textarea>
+                                    <!-- Experience Level -->
+                                    <div class="col-md-4">
+                                        <div class="form-group select-style">
+                                            <label class="font-sm color-text-mutted mb-10">Experience Level *</label>
+                                            <select class="form-control country form-icons select-active"
+                                                name="experience_level">
+                                                <option value="">Select</option>
 
-                                            @error('vision')
+                                            </select>
+
+                                            @error('experience_level')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!-- Website -->
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Website</label>
+                                            <input class="form-control" name="website" type="text" value="">
+
+                                            @error('website')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!-- Date of Birth -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Date of Birth</label>
+                                            <input class="form-control datepicker" name="date_of_birth" type="text"
+                                                value="" placeholder="yyyy/mm/dd">
+
+                                            @error('date_of_birth')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -133,7 +153,7 @@
                         </div>
 
                         <!--Founding Info -->
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        {{-- <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
                             <form method="POST" action="{{ route('company.profile.founding.info') }}">
                                 @csrf
@@ -326,7 +346,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
 
                         <!--Account Setting -->
                         <!--<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">hhhh</div> -->
