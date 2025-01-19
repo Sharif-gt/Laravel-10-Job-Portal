@@ -10,7 +10,9 @@ trait FileImageUploadTrait
      * Handle file image uploads
      */
 
-    function uploadFile(Request $request, string $inputName, ?string $oldPath = null, string $path = '/upload/company-profile'): string
+    //   = '/upload/company-profile'
+    //  ?string $oldPath = null,
+    function uploadFile(Request $request, string $inputName,  string $path): string
     {
         if ($request->hasFile($inputName)) {
             $image = $request->{$inputName};
