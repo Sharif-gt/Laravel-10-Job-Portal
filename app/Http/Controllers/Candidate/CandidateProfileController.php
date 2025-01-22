@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateBesicInfoRequest;
 use App\Models\Candidate;
 use App\Models\Experience;
+use App\Models\Language;
+use App\Models\Profession;
+use App\Models\Skill;
 use App\Services\Notify;
 use Illuminate\Http\RedirectResponse;
 use App\Traits\FileImageUploadTrait;
@@ -20,9 +23,11 @@ class CandidateProfileController extends Controller
     {
         $experiences = Experience::all();
         $candidatesInfo = Candidate::where('user_id', auth()->user()->id)->first();
+        $professions = Profession::all();
+        $skills = Skill::all();
+        $languages = Language::all();
 
-
-        return view('frontend.candidate-dashboard.profile', compact('experiences', 'candidatesInfo'));
+        return view('frontend.candidate-dashboard.profile', compact('experiences', 'candidatesInfo', 'professions', 'skills', 'languages'));
     }
 
     public function store(CandidateBesicInfoRequest $request): RedirectResponse

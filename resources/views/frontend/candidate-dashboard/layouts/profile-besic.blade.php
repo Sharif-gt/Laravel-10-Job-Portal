@@ -19,7 +19,7 @@
             </div>
             <!-- CV -->
             <div class="col-md-7">
-                {{-- <x-image-preview :height="200" :width="300" :source="$companieInfo?->banner" /> --}}
+                {{-- <x-image-preview :height="200" :width="300" :source="$candidatesInfo?->cv" /> --}}
                 <div class="form-group">
                     <label class="font-sm color-text-mutted mb-10">CV</label>
                     <input class="form-control" name="cv" type="file" value="">

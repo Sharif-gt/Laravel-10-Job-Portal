@@ -68,7 +68,6 @@
 
     @notifyJs
 
-
     <!-- Page Specific JS File -->
     <script src="{{ asset('admin/assets/js/page/index-0.js') }}"></script>
 
