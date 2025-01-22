@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
     Route::get('/dashboard', [CandidateDashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile');
     Route::post('/profile-update', [CandidateProfileController::class, 'store'])->name('profile-update');
+    Route::post('/profile-details', [CandidateProfileController::class, 'profileInfo'])->name('profile-details');
 });
 
 

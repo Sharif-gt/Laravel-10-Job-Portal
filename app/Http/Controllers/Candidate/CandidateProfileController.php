@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Candidate;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateBesicInfoRequest;
+use App\Http\Requests\Frontend\CandidateProfileSectionRequest;
 use App\Models\Candidate;
+use App\Models\CandidateLanguage;
+use App\Models\CandidateSkill;
 use App\Models\Experience;
 use App\Models\Language;
 use App\Models\Profession;
@@ -54,6 +57,42 @@ class CandidateProfileController extends Controller
             ['user_id' => auth()->user()->id],
             $uploadData
         );
+
+        Notify::updatedNotification();
+        return redirect()->back();
+    }
+
+    public function profileInfo(CandidateProfileSectionRequest $request): RedirectResponse
+    {
+        $data = [];
+        $data['gender'] = $request->gender;
+        $data['marital_status'] = $request->marital_status;
+        $data['profession_id'] = $request->profession;
+        $data['status'] = $request->status;
+        $data['bio'] = $request->bio;
+
+        Candidate::updateOrCreate(
+            ['user_id' => auth()->user()->id],
+            $data
+        );
+
+        $candidate = Candidate::where('user_id', auth()->user()->id)->first();
+
+        CandidateSkill::where('candidate_id', $candidate->id)?->delete();
+        foreach ($request->skills as $skill) {
+            $candidateSkill = new CandidateSkill();
+            $candidateSkill->candidate_id = $candidate->id;
+            $candidateSkill->skill_id = $skill;
+            $candidateSkill->save();
+        }
+
+        CandidateLanguage::where('candidate_id', $candidate->id)?->delete();
+        foreach ($request->languages as $language) {
+            $candidateLan = new CandidateLanguage();
+            $candidateLan->candidate_id = $candidate->id;
+            $candidateLan->language_id = $language;
+            $candidateLan->save();
+        }
 
         Notify::updatedNotification();
         return redirect()->back();

@@ -60,7 +60,7 @@
                     <select class="form-control country form-icons select-active" name="experience_level">
                         <option value="">Select</option>
                         @foreach ($experiences as $experience)
-                            <option @selected($experience?->id === $candidatesInfo->experience_id) value="{{ $experience?->id }}">{{ $experience?->name }}
+                            <option @selected($experience?->id === $candidatesInfo?->experience_id) value="{{ $experience?->id }}">{{ $experience?->name }}
                             </option>
                         @endforeach
 
