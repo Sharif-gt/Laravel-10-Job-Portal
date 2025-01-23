@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Candidate\CandidateDashboardController;
+use App\Http\Controllers\Candidate\CandidateExperienceController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\Company\AjaxRequestController;
 use App\Http\Controllers\Company\CompanyDashboardController;
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile');
     Route::post('/profile-update', [CandidateProfileController::class, 'store'])->name('profile-update');
     Route::post('/profile-details', [CandidateProfileController::class, 'profileInfo'])->name('profile-details');
+    Route::resource('/add-experience', CandidateExperienceController::class);
 });
 
 

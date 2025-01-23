@@ -38,8 +38,8 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
-                                aria-selected="false">Experience & Education</button>
+                                data-bs-target="#pills-experience" type="button" role="tab"
+                                aria-controls="pills-experience" aria-selected="false">Experience & Education</button>
                         </li>
                         <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-contact-tab"
                                 data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
@@ -54,6 +54,9 @@
                         <!--Candidate Profile -->
                         @include('frontend.candidate-dashboard.layouts.profile-profile')
 
+                        <!--Candidate Profile -->
+                        @include('frontend.candidate-dashboard.layouts.profile-ecperience')
+
                         <!--Account Setting -->
                         <!--<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">hhhh</div> -->
                     </div>
@@ -61,50 +64,30 @@
             </div>
         </div>
     </section>
+    <!--Experience model -->
+    @include('frontend.candidate-dashboard.layouts.ecperience-model')
 @endsection
 
 <!-- Ajax request Script -->
 @push('script')
     <script>
         $(document).ready(function() {
-            $(".country").on("change", function() {
-                let country_id = $(this).val();
-                $(".city").html("");
-
+            $("#experienceAdd").on("submit", function(e) {
+                e.preventDefault();
+                const experienceData = $(this).serialize();
+                // console.log(experienceData);
                 $.ajax({
-                    method: "GET",
-                    url: "{{ route('get-states', ':id') }}".replace(':id', country_id),
-                    data: {},
+                    method: "POST",
+                    url: "{{ route('candidate.add-experience.store') }}",
+                    data: experienceData,
                     success: function(response) {
-                        let html = "";
 
-                        $.each(response, function(index, value) {
-                            html += `<option value="${value.id}">${value.name}</option>`
-                        });
-                        $(".state").html(html);
                     },
-                    error: function(xhr, status, error) {}
+                    error: function(xhr, status, error) {
+
+                    }
                 });
-            })
-
-            $(".state").on("change", function() {
-                let state_id = $(this).val();
-
-                $.ajax({
-                    method: "GET",
-                    url: "{{ route('get-cities', ':id') }}".replace(':id', state_id),
-                    data: {},
-                    success: function(response) {
-                        let html = "";
-
-                        $.each(response, function(index, value) {
-                            html += `<option value="${value.id}">${value.name}</option>`
-                        });
-                        $(".city").html(html);
-                    },
-                    error: function(xhr, status, error) {}
-                });
-            })
+            });
         })
     </script>
 @endpush
