@@ -54,7 +54,7 @@
                         <!--Candidate Profile -->
                         @include('frontend.candidate-dashboard.layouts.profile-profile')
 
-                        <!--Candidate Profile -->
+                        <!--Candidate profile-ecperience -->
                         @include('frontend.candidate-dashboard.layouts.profile-ecperience')
 
                         <!--Account Setting -->
@@ -75,13 +75,14 @@
             $("#experienceAdd").on("submit", function(e) {
                 e.preventDefault();
                 const experienceData = $(this).serialize();
-                // console.log(experienceData);
                 $.ajax({
                     method: "POST",
                     url: "{{ route('candidate.add-experience.store') }}",
                     data: experienceData,
                     success: function(response) {
-
+                        $("#experienceAdd").trigger("reset");
+                        $('#experienceModel').modal('hide');
+                        notyf.success(response.message);
                     },
                     error: function(xhr, status, error) {
 

@@ -2,23 +2,24 @@
 
 namespace App\Services;
 
+
 class Notify
 {
     // Create Notification
     static function createdNotification()
     {
-        notify()->success('Created Successfully', 'Success');
+        notyf()->addSuccess('Created Successfully.');
     }
 
     // Update Notification
     static function updatedNotification()
     {
-        notify()->success('Updated Successfully', 'Success');
+        notyf()->addSuccess('Updated Successfully.');
     }
 
     // Delete Notification
     static function deletedNotification()
     {
-        notify()->success('Deleted Successfully', 'Success');
+        notyf()->addSuccess('Deleted Successfully.');
     }
 }

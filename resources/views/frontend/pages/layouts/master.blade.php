@@ -13,10 +13,8 @@
     <meta name="keywords" content="index, page">
     <meta name="author" content="">
 
-    <!--Laravel Notify css -->
-    @notifyCss
-
     <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link href="{{ asset('frontend/assets/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet"
@@ -156,16 +154,15 @@
     <script src="{{ asset('frontend/assets/js/plugins/counterup.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
-    <!--Laravel Notify js -->
-    <!--Notify js start -->
-    <x-notify::notify />
-    <!--Notify js end -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
-    @notifyJs
     <script src="{{ asset('frontend/assets/js/main.js?v=4.1') }}"></script>
     @stack('script')
 
     <script>
+        // Create an instance of Notyf
+        var notyf = new Notyf();
+
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd',
         });
