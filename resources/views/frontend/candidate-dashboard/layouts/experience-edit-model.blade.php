@@ -1,12 +1,12 @@
-<div class="modal fade" id="experienceModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="experienceEditModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">ADD Experience</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Experience</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="" id="experienceAdd">
+                <form method="POST" action="" id="experienceEdit">
                     @csrf
 
                     <div class="row">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary ms-2">Add Experience</button>
+                        <button type="submit" class="btn btn-primary ms-2">Edit Experience</button>
                     </div>
                 </form>
             </div>

@@ -155,6 +155,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="{{ asset('frontend/assets/js/main.js?v=4.1') }}"></script>
     @stack('script')
@@ -173,6 +174,41 @@
             .catch(error => {
                 console.error(error);
             });
+
+
+        // sweet alert
+        $(".delete-item").on("click", function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this data!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = $(this).attr('href');
+                    $.ajax({
+                        method: 'DELETE',
+                        url: url,
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+
+                        },
+                        error: function(xhr, status, error) {
+                            swal(xhr.responseJSON.message, {
+                                icon: 'error',
+                            });
+                        }
+                    })
+                }
+            });
+        })
     </script>
 </body>
 

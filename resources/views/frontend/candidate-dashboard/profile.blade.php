@@ -66,12 +66,14 @@
     </section>
     <!--Experience model -->
     @include('frontend.candidate-dashboard.layouts.ecperience-model')
+    @include('frontend.candidate-dashboard.layouts.experience-edit-model')
 @endsection
 
 <!-- Ajax request Script -->
 @push('script')
     <script>
         $(document).ready(function() {
+            // Add Experience.....
             $("#experienceAdd").on("submit", function(e) {
                 e.preventDefault();
                 const experienceData = $(this).serialize();
@@ -89,6 +91,50 @@
                     }
                 });
             });
+            // Edit experience
+            $(".editExperience").on("click", function(e) {
+                // Reset the form before populating it
+                $("#experienceEdit").trigger("reset");
+
+                let url = $(this).attr('href');
+
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    data: {},
+                    success: function(response) {
+                        editId = response.id;
+                        $.each(response, function(index, value) {
+                            $(`input[name="${index}"]:text`).val(value);
+                            if (index === 'currently_working' && value == 1) {
+                                $(`input[name="${index}"]:checkbox`).prop('checked',
+                                    true);
+                            }
+                            if (index === 'responsibility') {
+                                $(`textarea[name="${index}"]`).val(value);
+                            }
+                        })
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            })
+            // Edit experience
+            $("#experienceEdit").on("submit", function(e) {
+                e.preventDefault();
+                const experienceData = $(this).serialize();
+                $.ajax({
+                    method: "PUT",
+                    url: "{{ route('candidate.add-experience.update', ':id') }}".replace(':id',
+                        editId),
+                    data: experienceData,
+                    success: function(response) {
+                        $("#experienceEdit").trigger("reset");
+                        $('#experienceEditModel').modal('hide');
+                        notyf.success(response.message);
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            })
         })
     </script>
 @endpush
