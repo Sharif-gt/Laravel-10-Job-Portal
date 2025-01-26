@@ -13,7 +13,7 @@
                 <th style="width: 20%">Action</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="experience-tbody">
             @foreach ($candidateExperience as $experience)
                 <tr>
                     <th>{{ $experience?->company }}</th>

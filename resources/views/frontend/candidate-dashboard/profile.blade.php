@@ -73,6 +73,18 @@
 @push('script')
     <script>
         $(document).ready(function() {
+            // Ajax function for fetch experience data
+            function fetchExperience() {
+                $.ajax({
+                    method: "GET",
+                    url: "{{ route('candidate.add-experience.index') }}",
+                    data: {},
+                    success: function(response) {
+                        $(".experience-tbody").html(response);
+                    },
+                    error: function(xhr, status, error) {}
+                })
+            }
             // Add Experience.....
             $("#experienceAdd").on("submit", function(e) {
                 e.preventDefault();
@@ -84,6 +96,7 @@
                     success: function(response) {
                         $("#experienceAdd").trigger("reset");
                         $('#experienceModel').modal('hide');
+                        fetchExperience();
                         notyf.success(response.message);
                     },
                     error: function(xhr, status, error) {
@@ -91,8 +104,8 @@
                     }
                 });
             });
-            // Edit experience
-            $(".editExperience").on("click", function(e) {
+            // Edit experience show
+            $("body").on("click", ".editExperience", function(e) {
                 // Reset the form before populating it
                 $("#experienceEdit").trigger("reset");
 
@@ -119,7 +132,7 @@
                 });
             })
             // Edit experience
-            $("#experienceEdit").on("submit", function(e) {
+            $("body").on("submit", "#experienceEdit", function(e) {
                 e.preventDefault();
                 const experienceData = $(this).serialize();
                 $.ajax({
@@ -130,11 +143,47 @@
                     success: function(response) {
                         $("#experienceEdit").trigger("reset");
                         $('#experienceEditModel').modal('hide');
+                        fetchExperience();
                         notyf.success(response.message);
                     },
                     error: function(xhr, status, error) {}
                 });
             })
+            // sweet alert for experience delete
+            $("body").on("click", ".delete-item", function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this data!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let url = $(this).attr('href');
+                        $.ajax({
+                            method: 'DELETE',
+                            url: url,
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                fetchExperience();
+                                notyf.success(response.message);
+                            },
+                            error: function(xhr, status, error) {
+                                swal(xhr.responseJSON.message, {
+                                    icon: 'error',
+                                });
+                            }
+                        })
+                    }
+                });
+            })
+
         })
     </script>
 @endpush

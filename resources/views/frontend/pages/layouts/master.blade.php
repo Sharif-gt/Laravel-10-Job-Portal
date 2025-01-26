@@ -174,41 +174,6 @@
             .catch(error => {
                 console.error(error);
             });
-
-
-        // sweet alert
-        $(".delete-item").on("click", function(e) {
-            e.preventDefault();
-
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this data!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    let url = $(this).attr('href');
-                    $.ajax({
-                        method: 'DELETE',
-                        url: url,
-                        data: {
-                            _token: "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-
-                        },
-                        error: function(xhr, status, error) {
-                            swal(xhr.responseJSON.message, {
-                                icon: 'error',
-                            });
-                        }
-                    })
-                }
-            });
-        })
     </script>
 </body>
 

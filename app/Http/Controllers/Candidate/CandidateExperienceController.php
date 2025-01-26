@@ -15,7 +15,9 @@ class CandidateExperienceController extends Controller
      */
     public function index()
     {
-        //
+        $candidateExperience = CandidateExperience::where('candidate_id', auth()->user()->candidateProfile->id)->orderBy('id', 'DESC')->get();
+
+        return view('frontend.candidate-dashboard.ajax-experience-table', compact('candidateExperience'))->render();
     }
 
     /**
@@ -96,7 +98,7 @@ class CandidateExperienceController extends Controller
             }
             $candidateExperience->delete();
 
-            return response(['message' => 'success'], 200);
+            return response(['message' => 'Delete Successfully.'], 200);
         } catch (\Exception $e) {
             logger($e);
 
