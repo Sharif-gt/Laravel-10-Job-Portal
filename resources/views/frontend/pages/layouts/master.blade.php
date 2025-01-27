@@ -175,11 +175,11 @@
 
         // preloader js
         function showLoader() {
-            $(".preloader_demo").removeCliss("d-none");
+            $(".preloader_demo").removeClass("d-none");
         }
 
         function hideLoader() {
-            $(".preloader_demo").addCliss("d-none");
+            $(".preloader_demo").addClass("d-none");
         }
     </script>
 </body>

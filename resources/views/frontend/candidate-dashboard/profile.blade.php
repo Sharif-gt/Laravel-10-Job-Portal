@@ -93,10 +93,14 @@
                     method: "POST",
                     url: "{{ route('candidate.add-experience.store') }}",
                     data: experienceData,
+                    beforeSend: function() {
+                        showLoader();
+                    },
                     success: function(response) {
                         $("#experienceAdd").trigger("reset");
                         $('#experienceModel').modal('hide');
                         fetchExperience();
+                        hideLoader();
                         notyf.success(response.message);
                     },
                     error: function(xhr, status, error) {
@@ -140,10 +144,14 @@
                     url: "{{ route('candidate.add-experience.update', ':id') }}".replace(':id',
                         editId),
                     data: experienceData,
+                    beforeSend: function() {
+                        showLoader();
+                    },
                     success: function(response) {
                         $("#experienceEdit").trigger("reset");
                         $('#experienceEditModel').modal('hide');
                         fetchExperience();
+                        hideLoader();
                         notyf.success(response.message);
                     },
                     error: function(xhr, status, error) {}
@@ -170,8 +178,12 @@
                             data: {
                                 _token: "{{ csrf_token() }}"
                             },
+                            beforeSend: function() {
+                                showLoader();
+                            },
                             success: function(response) {
                                 fetchExperience();
+                                hideLoader();
                                 notyf.success(response.message);
                             },
                             error: function(xhr, status, error) {
