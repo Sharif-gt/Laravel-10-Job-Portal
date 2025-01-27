@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CandidateBesicInfoRequest;
 use App\Http\Requests\Frontend\CandidateProfileSectionRequest;
 use App\Models\Candidate;
+use App\Models\CandidateEducation;
 use App\Models\CandidateExperience;
 use App\Models\CandidateLanguage;
 use App\Models\CandidateSkill;
@@ -28,11 +29,12 @@ class CandidateProfileController extends Controller
         $experiences = Experience::all();
         $candidatesInfo = Candidate::where('user_id', auth()->user()->id)->first();
         $candidateExperience = CandidateExperience::where('candidate_id', $candidatesInfo->id)->orderBy('id', 'DESC')->get();
+        $candidateEducation = CandidateEducation::where('candidate_id', $candidatesInfo->id)->orderBy('id', 'DESC')->get();
         $professions = Profession::all();
         $skills = Skill::all();
         $languages = Language::all();
 
-        return view('frontend.candidate-dashboard.profile', compact('experiences', 'candidatesInfo', 'professions', 'skills', 'languages', 'candidateExperience'));
+        return view('frontend.candidate-dashboard.profile', compact('experiences', 'candidatesInfo', 'professions', 'skills', 'languages', 'candidateExperience', 'candidateEducation'));
     }
 
     public function store(CandidateBesicInfoRequest $request): RedirectResponse

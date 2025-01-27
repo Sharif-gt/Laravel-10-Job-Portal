@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Candidate\CandidateDashboardController;
+use App\Http\Controllers\Candidate\CandidateEducationController;
 use App\Http\Controllers\Candidate\CandidateExperienceController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\Company\AjaxRequestController;
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
     Route::post('/profile-update', [CandidateProfileController::class, 'store'])->name('profile-update');
     Route::post('/profile-details', [CandidateProfileController::class, 'profileInfo'])->name('profile-details');
     Route::resource('/add-experience', CandidateExperienceController::class);
+    Route::resource('/add-education', CandidateEducationController::class);
 });
 
 

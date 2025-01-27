@@ -67,12 +67,15 @@
     <!--Experience model -->
     @include('frontend.candidate-dashboard.layouts.ecperience-model')
     @include('frontend.candidate-dashboard.layouts.experience-edit-model')
+    @include('frontend.candidate-dashboard.layouts.education-model')
+    @include('frontend.candidate-dashboard.layouts.education-edit-model')
 @endsection
 
 <!-- Ajax request Script -->
 @push('script')
     <script>
         $(document).ready(function() {
+            // EXPERIENCE SECTION
             // Ajax function for fetch experience data
             function fetchExperience() {
                 $.ajax({
@@ -135,7 +138,7 @@
                     error: function(xhr, status, error) {}
                 });
             })
-            // Edit experience
+            // update experience
             $("body").on("submit", "#experienceEdit", function(e) {
                 e.preventDefault();
                 const experienceData = $(this).serialize();
@@ -195,6 +198,135 @@
                     }
                 });
             })
+
+            // EDUCATION SECTION
+
+            // Add Education.....
+            // Ajax function for fetch education data
+            function fetchEducation() {
+                $.ajax({
+                    method: "GET",
+                    url: "{{ route('candidate.add-education.index') }}",
+                    data: {},
+                    success: function(response) {
+                        $(".education-tbody").html(response);
+                    },
+                    error: function(xhr, status, error) {}
+                })
+            }
+            $("#educationAdd").on("submit", function(e) {
+                e.preventDefault();
+                const educationData = $(this).serialize();
+                $.ajax({
+                    method: "POST",
+                    url: "{{ route('candidate.add-education.store') }}",
+                    data: educationData,
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        $("#educationAdd").trigger("reset");
+                        $('#educationModel').modal('hide');
+                        fetchEducation();
+                        hideLoader();
+                        notyf.success(response.message);
+                    },
+                    error: function(xhr, status, error) {
+
+                    }
+                });
+            });
+
+            // Edit education show
+            $("body").on("click", ".editEducation", function(e) {
+                // Reset the form before populating it
+                $("#educationEdit").trigger("reset");
+
+                let url = $(this).attr('href');
+
+                $.ajax({
+                    method: "GET",
+                    url: url,
+                    data: {},
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        editId = response.id;
+                        $.each(response, function(index, value) {
+                            $(`input[name="${index}"]:text`).val(value);
+                            if (index === 'note') {
+                                $(`textarea[name="${index}"]`).val(value);
+                            }
+                        })
+                        hideLoader();
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            })
+
+            // update education
+            $("body").on("submit", "#educationEdit", function(e) {
+                e.preventDefault();
+                const educationData = $(this).serialize();
+                $.ajax({
+                    method: "PUT",
+                    url: "{{ route('candidate.add-education.update', ':id') }}".replace(':id',
+                        editId),
+                    data: educationData,
+                    beforeSend: function() {
+                        showLoader();
+                    },
+                    success: function(response) {
+                        $("#educationEdit").trigger("reset");
+                        $('#educationEditModel').modal('hide');
+                        fetchEducation();
+                        hideLoader();
+                        notyf.success(response.message);
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            })
+
+            // sweet alert for experience delete
+            $("body").on("click", ".delete-item", function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this data!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let url = $(this).attr('href');
+                        $.ajax({
+                            method: 'DELETE',
+                            url: url,
+                            data: {
+                                _token: "{{ csrf_token() }}"
+                            },
+                            beforeSend: function() {
+                                showLoader();
+                            },
+                            success: function(response) {
+                                fetchEducation();
+                                hideLoader();
+                                notyf.success(response.message);
+                            },
+                            error: function(xhr, status, error) {
+                                swal(xhr.responseJSON.message, {
+                                    icon: 'error',
+                                });
+                            }
+                        })
+                    }
+                });
+            })
+            // END EDUCATION SECTION
 
         })
     </script>

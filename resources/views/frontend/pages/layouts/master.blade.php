@@ -166,6 +166,12 @@
             format: 'yyyy-mm-dd',
         });
 
+        $('.yearpicker').datepicker({
+            format: "yyyy",
+            viewMode: "years",
+            minViewMode: "years"
+        });
+
         //  CK editor 5
         ClassicEditor
             .create(document.querySelector('#editor'))
