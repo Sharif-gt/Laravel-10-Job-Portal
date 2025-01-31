@@ -6,6 +6,7 @@ use App\Http\Controllers\Candidate\CandidateEducationController;
 use App\Http\Controllers\Candidate\CandidateExperienceController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\Company\AjaxRequestController;
+use App\Http\Controllers\Company\CompanyAccountController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Frontend\FrontendController;
@@ -65,4 +66,6 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix
     Route::get('/profile', [CompanyProfileController::class, 'index'])->name('profile');
     Route::post('/profile/company-info', [CompanyProfileController::class, 'updateCompanyInfo'])->name('profile.info');
     Route::post('/profile/founding-info', [CompanyProfileController::class, 'foundingInfo'])->name('profile.founding.info');
+    Route::post('/account-email', [CompanyAccountController::class, 'accountEmail'])->name('account-email');
+    Route::post('/account-password', [CompanyAccountController::class, 'accountPassword'])->name('account-password');
 });

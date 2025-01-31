@@ -36,10 +36,10 @@
                                 data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                                 aria-selected="false">Founding Info</button>
                         </li>
-                        {{-- <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-contact-tab"
+                        <li class="nav-item" role="presentation"> <button class="nav-link" id="pills-contact-tab"
                                 data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                 aria-controls="pills-contact" aria-selected="false">Account Setting</button>
-                        </li> --}}
+                        </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
 
@@ -133,7 +133,8 @@
                         </div>
 
                         <!--Founding Info -->
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
 
                             <form method="POST" action="{{ route('company.profile.founding.info') }}">
                                 @csrf
@@ -329,7 +330,78 @@
                         </div>
 
                         <!--Account Setting -->
-                        <!--<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">hhhh</div> -->
+                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                            aria-labelledby="pills-contact-tab">
+
+                            <!--account email -->
+                            <h4 class="mt-3 mb-3">Change Email Address</h4>
+                            <form method="POST" action="{{ route('company.account-email') }}">
+                                @csrf
+
+                                <div class="row">
+                                    <!-- email -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Email</label>
+                                            <input class="form-control" name="email" type="email"
+                                                value="{{ auth()->user()->email }}">
+
+                                            @error('email')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="box-button mt-15 col-md-4">
+                                        <button type="submit" class="btn btn-apply-big font-md font-bold">Change
+                                            Email</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!--account password -->
+                            <hr>
+                            <h4 class="mt-3 mb-3">Change Password</h4>
+                            <form method="POST" action="{{ route('company.account-password') }}">
+                                @csrf
+
+                                <div class="row">
+                                    <!-- password -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Password</label>
+                                            <input class="form-control" name="password" type="password" value="">
+
+                                            @error('password')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!-- confirm password -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="font-sm color-text-mutted mb-10">Confirm Password</label>
+                                            <input class="form-control" name="password_confirmation" type="password"
+                                                value="">
+
+                                            @error('password_confirmation')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="box-button mt-15 col-md-4">
+                                        <button type="submit" class="btn btn-apply-big font-md font-bold">Change
+                                            Password</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
                 </div>
             </div>
