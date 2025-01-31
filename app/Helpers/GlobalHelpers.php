@@ -1,7 +1,6 @@
 <?php
 
-
-
+use App\Models\Candidate;
 use App\Models\Companie;
 
 
@@ -30,6 +29,23 @@ if (!function_exists('companyProfileCompletion')) {
 
         foreach ($requiredField as $field) {
             if (empty($companyProfile->{$field})) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+/**Cheack candidate profile completion */
+
+if (!function_exists('candidateProfileCompletion')) {
+    function candidateProfileCompletion()
+    {
+        $requiredField = ['experience_id', 'profession_id', 'image', 'full_name', 'gender', 'birth_date', 'status', 'country'];
+        $candidateProfile = Candidate::where('user_id', auth()->user()->id)->first();
+
+        foreach ($requiredField as $field) {
+            if (empty($candidateProfile->{$field})) {
                 return false;
             }
         }

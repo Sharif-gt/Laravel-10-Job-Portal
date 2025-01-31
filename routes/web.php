@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Candidate\CandidateAccountController;
 use App\Http\Controllers\Candidate\CandidateDashboardController;
 use App\Http\Controllers\Candidate\CandidateEducationController;
 use App\Http\Controllers\Candidate\CandidateExperienceController;
@@ -42,8 +43,11 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile');
     Route::post('/profile-update', [CandidateProfileController::class, 'store'])->name('profile-update');
     Route::post('/profile-details', [CandidateProfileController::class, 'profileInfo'])->name('profile-details');
+    Route::post('/account-settings', [CandidateProfileController::class, 'accountSetting'])->name('account-settings');
     Route::resource('/add-experience', CandidateExperienceController::class);
     Route::resource('/add-education', CandidateEducationController::class);
+    Route::post('/account-email', [CandidateAccountController::class, 'accountEmail'])->name('account-email');
+    Route::post('/account-password', [CandidateAccountController::class, 'accountPassword'])->name('account-password');
 });
 
 
