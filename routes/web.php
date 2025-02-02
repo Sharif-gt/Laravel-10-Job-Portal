@@ -9,6 +9,7 @@ use App\Http\Controllers\Company\AjaxRequestController;
 use App\Http\Controllers\Company\CompanyAccountController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyProfileController;
+use App\Http\Controllers\Frontend\CompanyPageController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 /* Home Routs */
 
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/companies', [CompanyPageController::class, 'allCompany'])->name('companies');
+Route::get('/companies/{slug}', [CompanyPageController::class, 'companyPage'])->name('companies.page');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -52,11 +55,11 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
 });
 
 
-/* company dashboard */
 /** Company AJAX Request Route */
 Route::get('get-states/{country_id}', [AjaxRequestController::class, 'stateRequest'])->name('get-states');
 Route::get('get-cities/{state_id}', [AjaxRequestController::class, 'citysRequest'])->name('get-cities');
 
+/* company dashboard */
 Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix' => 'company', 'as' => 'company.'], function () {
 
     /** Dashboard */
