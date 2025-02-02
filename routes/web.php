@@ -9,6 +9,7 @@ use App\Http\Controllers\Company\AjaxRequestController;
 use App\Http\Controllers\Company\CompanyAccountController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyProfileController;
+use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CompanyPageController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProfileController;
@@ -28,8 +29,14 @@ use Illuminate\Support\Facades\Route;
 /* Home Routs */
 
 Route::get('/', [FrontendController::class, 'index']);
+
+/* Company Routs */
 Route::get('/companies', [CompanyPageController::class, 'allCompany'])->name('companies');
 Route::get('/companies/{slug}', [CompanyPageController::class, 'companyPage'])->name('companies.page');
+
+/* Candidate Routs */
+Route::get('/candidates', [CandidatePageController::class, 'allCandidates'])->name('candidates');
+Route::get('/candidates/{slug}', [CandidatePageController::class, 'candidateInfo'])->name('candidates.page');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

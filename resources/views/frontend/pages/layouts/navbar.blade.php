@@ -12,9 +12,10 @@
                                 href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="has-children"><a href="jobs-list.html">Find a Job</a></li>
-                        <li class="has-children"><a class="{{ sidebarActive(['companies']) }}"
+                        <li class="has-children"><a class="{{ sidebarActive(['companies', 'companies.page']) }}"
                                 href="{{ route('companies') }}">Recruiters</a></li>
-                        <li class="has-children"><a href="candidates-grid.html">Candidates</a></li>
+                        <li class="has-children"><a class="{{ sidebarActive(['candidates', 'candidates.page']) }}"
+                                href="{{ route('candidates') }}">Candidates</a></li>
                         <li class="has-children"><a href="blog-grid.html">Pages</a>
                             <ul class="sub-menu">
                                 <li><a href="page-about.html">About Us</a></li>
