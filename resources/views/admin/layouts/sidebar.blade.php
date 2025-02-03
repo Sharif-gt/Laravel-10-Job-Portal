@@ -57,6 +57,15 @@
                 </ul>
             </li>
 
+            <!-- price plan -->
+            <li class="{{ sidebarActive(['admin.plans.*']) }}">
+                <a class="nav-link" href="{{ route('admin.plans.index') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Price Plan</span>
+                </a>
+            </li>
+
             {{-- <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>

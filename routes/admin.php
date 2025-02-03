@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
+use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
@@ -73,6 +74,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Skills Routs */
     Route::resource('skills', SkillController::class);
+
+    /** price plan Routs */
+    Route::resource('plans', PriceController::class);
 
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //     ->name('verification.notice');
