@@ -19,7 +19,7 @@
                         <li class="has-children"><a href="blog-grid.html">Pages</a>
                             <ul class="sub-menu">
                                 <li><a href="page-about.html">About Us</a></li>
-                                <li><a href="page-pricing.html">Pricing Plan</a></li>
+                                <li><a href="{{ route('pricing') }}">Pricing Plan</a></li>
                                 <li><a href="page-contact.html">Contact Us</a></li>
                                 <li><a href="page-register.html">Register</a></li>
                                 <li><a href="page-signin.html">Signin</a></li>

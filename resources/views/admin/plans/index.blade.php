@@ -25,7 +25,7 @@
                                     @if ($item?->frontend_show)
                                         <span class="badge badge-primary">Showing at frontend</span>
                                     @endif
-                                    @if ($item?->frontend_show)
+                                    @if ($item?->home_show)
                                         <span class="badge badge-success text-dark">Showing at home</span>
                                     @endif
                                 </div>

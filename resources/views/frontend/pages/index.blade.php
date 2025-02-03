@@ -9,24 +9,24 @@
     @include('frontend.pages.layouts.category-section')
 
 
-    {{-- <!-- Futured Jobs Section-->
-    @include('frontend.pages.layouts.futured-jobs')
+    <!-- Futured Jobs Section-->
+    {{-- @include('frontend.pages.layouts.futured-jobs') --}}
 
 
     <!-- Why Choose Section-->
-    @include('frontend.pages.layouts.why-choose')
+    {{-- @include('frontend.pages.layouts.why-choose') --}}
 
 
     <!-- Find Job Section-->
-    @include('frontend.pages.layouts.find-job')
+    {{-- @include('frontend.pages.layouts.find-job') --}}
 
 
     <!-- Count Section-->
-    @include('frontend.pages.layouts.count-section')
+    {{-- @include('frontend.pages.layouts.count-section') --}}
 
 
     <!-- Recruiters Section Section-->
-    @include('frontend.pages.layouts.recruiters-section')
+    {{-- @include('frontend.pages.layouts.recruiters-section') --}}
 
 
     <!-- Pricing Plan Section-->
@@ -34,13 +34,13 @@
 
 
     <!-- Jobs Location Section-->
-    @include('frontend.pages.layouts.jobs-location')
+    {{-- @include('frontend.pages.layouts.jobs-location') --}}
 
 
     <!-- Reviews Section-->
-    @include('frontend.pages.layouts.review-section')
+    {{-- @include('frontend.pages.layouts.review-section') --}}
 
 
     <!-- Blog Section-->
-    @include('frontend.pages.layouts.blog-section') --}}
+    {{-- @include('frontend.pages.layouts.blog-section') --}}
 @endsection

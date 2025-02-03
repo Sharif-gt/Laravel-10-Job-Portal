@@ -12,6 +12,7 @@ use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CompanyPageController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,9 @@ Route::get('/companies/{slug}', [CompanyPageController::class, 'companyPage'])->
 /* Candidate Routs */
 Route::get('/candidates', [CandidatePageController::class, 'allCandidates'])->name('candidates');
 Route::get('/candidates/{slug}', [CandidatePageController::class, 'candidateInfo'])->name('candidates.page');
+
+/* Pricing Routs */
+Route::get('/pricing', PricingPageController::class)->name('pricing');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

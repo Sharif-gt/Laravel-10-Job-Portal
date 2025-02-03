@@ -7,51 +7,28 @@
         <div class="max-width-price">
             <div class="block-pricing mt-70">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
-                        <div class="box-pricing-item">
-                            <h3>Basic</h3>
-                            <div class="box-info-price"><span class="text-price color-brand-2">$19</span><span
-                                    class="text-month">/month</span></div>
-                            <ul class="list-package-feature">
-                                <li>Unlimited updates</li>
-                                <li>Custom designs &amp; features</li>
-                                <li>Custom permissions</li>
-                                <li>Custom instructors</li>
-                                <li>Free support ticket</li>
-                            </ul>
-                            <div><a class="btn btn-border" href="#">Choose plan</a></div>
+                    @foreach ($price as $item)
+                        <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
+                            <div class="box-pricing-item">
+                                <h3>{{ $item?->lable }}</h3>
+                                <div class="box-info-price"><span
+                                        class="text-price color-brand-2">${{ $item?->price }}</span><span
+                                        class="text-month">/month</span></div>
+                                <ul class="list-package-feature">
+                                    <li>{{ $item?->job_limit }} Job Post Limit</li>
+                                    <li>{{ $item?->feature_job_limit }} Features Job Post
+                                        Limit</li>
+                                    <li>{{ $item?->highlight_job_limit }} Highlight Job Post Limit</li>
+                                    @if ($item?->profile_verified)
+                                        <li>Verify Company</li>
+                                    @else
+                                        <li style="text-decoration: line-through;">not Verify Company</li>
+                                    @endif
+                                </ul>
+                                <div><a class="btn btn-border" href="#">Choose plan</a></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
-                        <div class="box-pricing-item">
-                            <h3>Standard</h3>
-                            <div class="box-info-price"><span class="text-price for-month display-month">$29</span><span
-                                    class="text-month">/month</span></div>
-                            <ul class="list-package-feature">
-                                <li>Unlimited updates</li>
-                                <li>Custom designs &amp; features</li>
-                                <li>Custom permissions</li>
-                                <li>Custom instructors</li>
-                                <li>Free support ticket</li>
-                            </ul>
-                            <div><a class="btn btn-border" href="#">Choose plan</a></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow animate__animated animate__fadeInUp">
-                        <div class="box-pricing-item">
-                            <h3>Enterpr&imath;se</h3>
-                            <div class="box-info-price"><span class="text-price for-month display-month">$49</span><span
-                                    class="text-month">/month</span></div>
-                            <ul class="list-package-feature">
-                                <li>Unlimited updates</li>
-                                <li>Custom designs &amp; features</li>
-                                <li>Custom permissions</li>
-                                <li>Custom instructors</li>
-                                <li>Free support ticket</li>
-                            </ul>
-                            <div><a class="btn btn-border" href="#">Choose plan</a></div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
