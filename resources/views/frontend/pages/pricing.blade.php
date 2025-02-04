@@ -42,7 +42,8 @@
                                             <li style="text-decoration: line-through;">not Verify Company</li>
                                         @endif
                                     </ul>
-                                    <div><a class="btn btn-border" href="#">Choose plan</a></div>
+                                    <div><a class="btn btn-border" href="{{ route('checkout', $item?->id) }}">Choose
+                                            plan</a></div>
                                 </div>
                             </div>
                         @endforeach

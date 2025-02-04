@@ -10,6 +10,7 @@ use App\Http\Controllers\Company\CompanyAccountController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Frontend\CandidatePageController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompanyPageController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PricingPageController;
@@ -41,6 +42,7 @@ Route::get('/candidates/{slug}', [CandidatePageController::class, 'candidateInfo
 
 /* Pricing Routs */
 Route::get('/pricing', PricingPageController::class)->name('pricing');
+Route::get('/checkout/{plan_id}', CheckoutController::class)->name('checkout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
