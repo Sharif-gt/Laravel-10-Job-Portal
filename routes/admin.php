@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
+use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SkillController;
@@ -77,6 +78,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** price plan Routs */
     Route::resource('plans', PriceController::class);
+
+    /** payment setting Routs */
+    Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
+    Route::post('payment-setting/store', [PaymentSettingController::class, 'store'])->name('payment-setting.store');
 
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //     ->name('verification.notice');

@@ -60,9 +60,16 @@
             <!-- price plan -->
             <li class="{{ sidebarActive(['admin.plans.*']) }}">
                 <a class="nav-link" href="{{ route('admin.plans.index') }}">
-                    {{-- <i class="far fa-square"></i> --}}
                     <i class="fas fa-home"></i>
                     <span>Price Plan</span>
+                </a>
+            </li>
+
+            <!-- payment setting -->
+            <li class="{{ sidebarActive(['admin.payment-setting.index']) }}">
+                <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">
+                    <i class="fas fa-home"></i>
+                    <span>Payment settings</span>
                 </a>
             </li>
 
