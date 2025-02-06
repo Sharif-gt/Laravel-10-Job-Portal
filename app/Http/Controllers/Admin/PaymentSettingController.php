@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PaymentSettingRequest;
 use App\Models\PaymentSetting;
 use App\Services\Notify;
+use App\Services\PaymentGatewaySetting;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -27,6 +28,9 @@ class PaymentSettingController extends Controller
                 ['value' => $value]
             );
         }
+
+        $settingService = app(PaymentGatewaySetting::class);
+        $settingService->removeCacheSetting();
 
         Notify::updatedNotification();
         return redirect()->back();

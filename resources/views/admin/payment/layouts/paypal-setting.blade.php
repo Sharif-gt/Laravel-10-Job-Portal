@@ -9,8 +9,8 @@
                     <div class="form-group">
                         <label>Paypal Status</label>
                         <select class="form-control" name="paypal_status" aria-hidden="true">
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option @selected(config('gatewaySetting.paypal_status' === 'active')) value="active">Active</option>
+                            <option @selected(config('gatewaySetting.paypal_status' === 'inactive')) value="inactive">Inactive</option>
                         </select>
 
                         @error('paypal_status')
@@ -23,8 +23,8 @@
                     <div class="form-group">
                         <label>Paypal Account Mode</label>
                         <select class="form-control" name="paypal_mode" aria-hidden="true">
-                            <option value="sandbox">Sandbox</option>
-                            <option value="live">Live</option>
+                            <option @selected(config('gatewaySetting.paypal_mode' === 'sandbox')) value="sandbox">Sandbox</option>
+                            <option @selected(config('gatewaySetting.paypal_mode' === 'live')) value="live">Live</option>
                         </select>
 
                         @error('paypal_mode')
@@ -39,7 +39,8 @@
                         <select class="form-control select2" name="paypal_country" aria-hidden="true">
                             <option value="">Select</option>
                             @foreach (config('countries') as $key => $value)
-                                <option value="{{ $key }}">{{ $value }}</option>
+                                <option @selected($key === config('gatewaySetting.paypal_country')) value="{{ $key }}">{{ $value }}
+                                </option>
                             @endforeach
                         </select>
 
@@ -55,7 +56,8 @@
                         <select class="form-control select2" name="paypal_currency" aria-hidden="true">
                             <option value="">Select</option>
                             @foreach (config('currencies.currency_list') as $key => $value)
-                                <option value="{{ $value }}">{{ $value }}</option>
+                                <option @selected($value === config('gatewaySetting.paypal_currency')) value="{{ $value }}">{{ $value }}
+                                </option>
                             @endforeach
                         </select>
 
@@ -69,7 +71,7 @@
                     <div class="form-group">
                         <label>Paypal Currency Rate</label>
                         <input type="text" class="form-control" name="paypal_currency_rate"
-                            value="{{ old('paypal_currency_rate') }}">
+                            value="{{ config('gatewaySetting.paypal_currency_rate') }}">
 
                         @error('paypal_currency_rate')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -81,7 +83,7 @@
                     <div class="form-group">
                         <label>Paypal Client Id</label>
                         <input type="text" class="form-control" name="paypal_client_id"
-                            value="{{ old('paypal_client_id') }}">
+                            value="{{ config('gatewaySetting.paypal_client_id') }}">
 
                         @error('paypal_client_id')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -93,7 +95,7 @@
                     <div class="form-group">
                         <label>Paypal Secret Key</label>
                         <input type="text" class="form-control" name="paypal_client_secret"
-                            value="{{ old('paypal_client_secret') }}">
+                            value="{{ config('gatewaySetting.paypal_client_secret') }}">
 
                         @error('paypal_client_secret')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -105,7 +107,7 @@
                     <div class="form-group">
                         <label>Paypal App Id</label>
                         <input type="text" class="form-control" name="paypal_app_id"
-                            value="{{ old('paypal_app_id') }}">
+                            value="{{ config('gatewaySetting.paypal_app_id') }}">
 
                         @error('paypal_app_id')
                             <div class="alert alert-danger">{{ $message }}</div>
