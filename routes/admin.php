@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** payment setting Routs */
     Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
     Route::post('payment-setting/store', [PaymentSettingController::class, 'store'])->name('payment-setting.store');
+
+    /** site setting Routs */
+    Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');
+    Route::post('site-settings/store', [SiteSettingController::class, 'store'])->name('site-settings.store');
 
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //     ->name('verification.notice');

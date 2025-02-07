@@ -73,6 +73,14 @@
                 </a>
             </li>
 
+            <!-- site setting -->
+            <li class="{{ sidebarActive(['admin.site-settings.index']) }}">
+                <a class="nav-link" href="{{ route('admin.site-settings.index') }}">
+                    <i class="fas fa-home"></i>
+                    <span>Site settings</span>
+                </a>
+            </li>
+
             {{-- <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>
