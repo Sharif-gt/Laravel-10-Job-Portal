@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Candidate\CandidateAccountController;
 use App\Http\Controllers\Candidate\CandidateDashboardController;
 use App\Http\Controllers\Candidate\CandidateEducationController;
@@ -84,4 +85,9 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix
     Route::post('/profile/founding-info', [CompanyProfileController::class, 'foundingInfo'])->name('profile.founding.info');
     Route::post('/account-email', [CompanyAccountController::class, 'accountEmail'])->name('account-email');
     Route::post('/account-password', [CompanyAccountController::class, 'accountPassword'])->name('account-password');
+
+    /** payment route */
+    Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
+    Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
+    Route::get('paypal/cancle', [PaymentController::class, 'paypalCancle'])->name('paypal.cancle');
 });
