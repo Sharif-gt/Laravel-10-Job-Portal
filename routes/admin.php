@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** payment setting Routs */
     Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
     Route::post('payment-setting/store', [PaymentSettingController::class, 'store'])->name('payment-setting.store');
+    Route::post('stripe-setting/store', [PaymentSettingController::class, 'stripeStore'])->name('stripe-setting.store');
 
     /** site setting Routs */
     Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');

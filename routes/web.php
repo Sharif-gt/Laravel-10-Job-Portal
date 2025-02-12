@@ -87,7 +87,14 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix
     Route::post('/account-password', [CompanyAccountController::class, 'accountPassword'])->name('account-password');
 
     /** payment route */
+    Route::get('payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('payment/error', [PaymentController::class, 'paymentError'])->name('payment.error');
+
     Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
     Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
     Route::get('paypal/cancle', [PaymentController::class, 'paypalCancle'])->name('paypal.cancle');
+
+    Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
+    Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
+    Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
 });
