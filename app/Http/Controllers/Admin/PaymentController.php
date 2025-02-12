@@ -62,16 +62,58 @@ class PaymentController extends Controller
 
         //calculate payable amount
         $payableAmount = round(Session::get('select_plan')['price'] * config('gatewaySetting.paypal_currency_rate'));
+
+        $response = $provider->createOrder([
+            'intent' => 'CAPTURE',
+            'application_context' => [
+                'return_url' => route('company.paypal.success'),
+                'cancel_url' => route('company.paypal.cancle'),
+            ],
+            'purchase_units' => [
+                [
+                    'amount' => [
+                        'currency_code' => config('gatewaySetting.paypal_currency'),
+                        'value' => $payableAmount
+                    ]
+                ]
+            ]
+        ]);
+
+        if (isset($response['id']) && $response['id'] !== NULL) {
+            foreach ($response['links'] as $link) {
+                if ($link['rel'] === 'approve') {
+                    return redirect()->away($link['href']);
+                }
+            }
+        }
     }
 
-    function paypalSuccess()
+    function paypalSuccess(Request $request)
     {
-        //
+        $config = $this->setPaypalConfig();
+        $provider = new PayPalClient($config);
+        $provider->getAccessToken();
+
+        $response = $provider->capturePaymentOrder($request->token);
+
+        if (isset($response['status']) && $response['status'] === 'COMPLETED') {
+
+            //store order
+            $capture = $response['purchase_units'][0]['payments']['captures'][0];
+            OrderServices::storeOrder($capture['id'], 'payPal', $capture['amount']['value'], $capture['amount']['currency_code'], 'paid');
+
+            OrderServices::setUserPlan();
+
+            Session::forget('select_plan');
+            return redirect()->route('company.payment.success');
+        }
+
+        return redirect()->route('company.payment.error')->withErrors(['error' => $response['error']['message']]);
     }
 
     function paypalCancle()
     {
-        //
+        return redirect()->route('company.payment.error')->withErrors(['error' => 'Something Wrong!']);
     }
 
     /***stripe */
@@ -110,7 +152,6 @@ class PaymentController extends Controller
         $sessionId = $request->session_id;
 
         $response = StripeSession::retrieve($sessionId);
-        // dd($response);
 
         if ($response->payment_status === 'paid') {
 
