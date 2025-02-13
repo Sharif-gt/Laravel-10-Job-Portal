@@ -68,9 +68,9 @@
                         </div>
                         <div class="card-footer text-right">
                             <nav class="d-inline-block">
-                                {{-- @if ($data->hasPages())
-                                    {{ $data->withQueryString()->links() }}
-                                @endif --}}
+                                @if ($orders->hasPages())
+                                    {{ $orders->withQueryString()->links() }}
+                                @endif
                             </nav>
                         </div>
                     </div>

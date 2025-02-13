@@ -28,7 +28,9 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Action</th>
-                                        <td><a href="{{ route('admin.orders.invoice', $order?->id) }}">Download details</a>
+                                        <td><a
+                                                class="btn btn-primary text-light"ref="{{ route('admin.orders.invoice', $order?->id) }}">Download
+                                                details</a>
                                         </td>
                                     </tr>
                                 </tbody>
