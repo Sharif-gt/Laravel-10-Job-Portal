@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\OrderDetailsController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -79,6 +80,11 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** price plan Routs */
     Route::resource('plans', PriceController::class);
+
+    /** order details Routs */
+    Route::get('orders', [OrderDetailsController::class, 'orderIndex'])->name('orders.index');
+    Route::get('orders/{id}', [OrderDetailsController::class, 'showOrder'])->name('orders.show');
+    Route::get('orders/invoice/{id}', [OrderDetailsController::class, 'invoice'])->name('orders.invoice');
 
     /** payment setting Routs */
     Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');

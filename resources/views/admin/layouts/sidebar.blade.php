@@ -57,6 +57,15 @@
                 </ul>
             </li>
 
+            <!-- Orders -->
+            <li class="{{ sidebarActive(['admin.orders.*']) }}">
+                <a class="nav-link" href="{{ route('admin.orders.index') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Orders</span>
+                </a>
+            </li>
+
             <!-- price plan -->
             <li class="{{ sidebarActive(['admin.plans.*']) }}">
                 <a class="nav-link" href="{{ route('admin.plans.index') }}">
