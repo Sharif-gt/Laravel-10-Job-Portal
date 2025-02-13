@@ -56,6 +56,7 @@ class PaymentController extends Controller
     /***handle paymant redirect */
     function payWithPaypal()
     {
+        abort_if(!$this->checkSession(), 404);
         $config = $this->setPaypalConfig();
         $provider = new PayPalClient($config);
         $provider->getAccessToken();
@@ -90,6 +91,7 @@ class PaymentController extends Controller
 
     function paypalSuccess(Request $request)
     {
+        abort_if(!$this->checkSession(), 404);
         $config = $this->setPaypalConfig();
         $provider = new PayPalClient($config);
         $provider->getAccessToken();
@@ -120,6 +122,7 @@ class PaymentController extends Controller
 
     function payWithStripe()
     {
+        abort_if(!$this->checkSession(), 404);
         Stripe::setApiKey(config('gatewaySetting.stripe_client_secret'));
 
         //calculate payable amount and convert to cent
@@ -148,6 +151,7 @@ class PaymentController extends Controller
 
     function stripeSuccess(Request $request)
     {
+        abort_if(!$this->checkSession(), 404);
         Stripe::setApiKey(config('gatewaySetting.stripe_client_secret'));
         $sessionId = $request->session_id;
 
@@ -169,5 +173,13 @@ class PaymentController extends Controller
     function stripeCancel()
     {
         redirect()->route('company.payment.error')->withErrors(['error' => 'Something Wrong!']);
+    }
+    /**check session */
+    function checkSession()
+    {
+        if (session()->has('select_plan')) {
+            return true;
+        }
+        return false;
     }
 }
