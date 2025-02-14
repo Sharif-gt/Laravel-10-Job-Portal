@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
+use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
@@ -85,6 +86,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     Route::get('orders', [OrderDetailsController::class, 'orderIndex'])->name('orders.index');
     Route::get('orders/{id}', [OrderDetailsController::class, 'showOrder'])->name('orders.show');
     Route::get('orders/invoice/{id}', [OrderDetailsController::class, 'invoice'])->name('orders.invoice');
+
+    /** Job category Routs */
+    Route::resource('job-category', JobCategoryController::class);
 
     /** payment setting Routs */
     Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');

@@ -42,6 +42,16 @@
                 </ul>
             </li>
 
+            <!-- Candidate Attributes -->
+            <li class="dropdown {{ sidebarActive(['admin.job-category.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Job Attributes</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ sidebarActive(['admin.job-category.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.job-category.index') }}">Job Category</a></li>
+                </ul>
+            </li>
+
             <!-- All Locations -->
 
             <li class="dropdown {{ sidebarActive(['admin.country.*', 'admin.state.*', 'admin.cities.*']) }}">
