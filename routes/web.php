@@ -10,6 +10,7 @@ use App\Http\Controllers\Company\AjaxRequestController;
 use App\Http\Controllers\Company\CompanyAccountController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyProfileController;
+use App\Http\Controllers\Company\PlanDetailsController;
 use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompanyPageController;
@@ -97,4 +98,9 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix
     Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
     Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
     Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
+
+    /** Plans details Routs */
+    Route::get('orders', [PlanDetailsController::class, 'planIndex'])->name('plans.index');
+    Route::get('orders/{id}', [PlanDetailsController::class, 'showPlan'])->name('plans.show');
+    Route::get('orders/invoice/{id}', [PlanDetailsController::class, 'invoice'])->name('plans.invoice');
 });

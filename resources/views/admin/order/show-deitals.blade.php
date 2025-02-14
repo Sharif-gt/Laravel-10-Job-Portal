@@ -28,8 +28,8 @@
                                     </tr>
                                     <tr>
                                         <th scope="row">Action</th>
-                                        <td><a
-                                                class="btn btn-primary text-light"ref="{{ route('admin.orders.invoice', $order?->id) }}">Download
+                                        <td><a class="btn btn-primary text-light"
+                                                href="{{ route('admin.orders.invoice', $order?->id) }}">Download
                                                 details</a>
                                         </td>
                                     </tr>
