@@ -81,7 +81,7 @@
                                                 <input type="text" class="form-control datepicker" name="deadline"
                                                     value="">
 
-                                                @error('vacancies')
+                                                @error('deadline')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -332,7 +332,7 @@
                                                     aria-hidden="true">
                                                     <option value="">Select</option>
                                                     @foreach ($tags as $item)
-                                                        <option value="{{ $item?->name }}">{{ $item?->name }}</option>
+                                                        <option value="{{ $item?->id }}">{{ $item?->name }}</option>
                                                     @endforeach
                                                 </select>
 
