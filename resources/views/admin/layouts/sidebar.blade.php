@@ -76,6 +76,15 @@
                 </a>
             </li>
 
+            <!-- job post -->
+            <li class="{{ sidebarActive(['admin.jobs.*']) }}">
+                <a class="nav-link" href="{{ route('admin.jobs.index') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Job Post</span>
+                </a>
+            </li>
+
             <!-- price plan -->
             <li class="{{ sidebarActive(['admin.plans.*']) }}">
                 <a class="nav-link" href="{{ route('admin.plans.index') }}">

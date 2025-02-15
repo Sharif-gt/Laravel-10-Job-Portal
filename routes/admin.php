@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LocationAjaxController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
@@ -89,6 +90,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Job category Routs */
     Route::resource('job-category', JobCategoryController::class);
+
+    /** Job post Routs */
+    Route::resource('jobs', JobController::class);
 
     /** payment setting Routs */
     Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');

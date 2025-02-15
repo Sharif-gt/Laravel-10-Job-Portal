@@ -3971,3 +3971,8 @@ body:not(.sidebar-mini)
     border-left: 0.3em solid transparent;
     margin-top: 16px;
 }
+
+/** Ck editor 5*/
+.ck-editor__editable_inline {
+    min-height: 300px;
+}
