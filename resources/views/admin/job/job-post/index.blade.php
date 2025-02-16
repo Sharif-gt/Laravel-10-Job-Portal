@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Jobs</h1>
+            <h1>Posts</h1>
         </div>
 
         <div class="section-body">
@@ -11,7 +11,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Jobs</h4>
+                            <h4>All Posts</h4>
                             <div class="card-header-form">
                                 <form action="{{ route('admin.jobs.index') }}" method="GET">
                                     <div class="input-group">
@@ -26,42 +26,78 @@
                             </div>
                             <a href="{{ route('admin.jobs.create') }}" class="btn btn-icon icon-left btn-success"><i
                                     class="far fa-edit"></i> Create
-                                Jobs</a>
+                                Post</a>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
-                                        <th>Icon</th>
-                                        <th>Name</th>
-                                        <th>Slug</th>
+                                        <th>Title</th>
+                                        <th>Category/Role</th>
+                                        <th>Salary</th>
+                                        <th>Deadline</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
-                                    {{-- @forelse ($jobCategory as $item)
+                                    @forelse ($allPost as $post)
                                         <tr>
-                                            <td><i style="font-size: 20px" class="{{ $item?->icon }}"></i></td>
-                                            <td>{{ $item?->name }}</td>
-                                            <td>{{ $item?->slug }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <img style="width: 50px; height: 50px; object-fit: cover;"
+                                                            src="{{ asset($post?->company?->logo) }}" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <b>{{ $post?->title }}</b> <br>
+                                                        <span>{{ $post?->company?->name }} -
+                                                            {{ $post?->jobType?->name }}</span>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <b>{{ $post?->jobCategory?->name }}</b> <br>
+                                                <span>{{ $post?->jobRole?->name }}</span>
+                                            </td>
+                                            <td>
+                                                @if ($post?->salary_mode === 'range')
+                                                    <div>
+                                                        <b>{{ $post?->min_salary }} - {{ $post?->max_salary }}
+                                                            {{ config('generalSetting.site_default_currency') }}</b> <br>
+                                                        <span>{{ $post?->salaryType?->name }}</span>
+                                                    </div>
+                                                @else
+                                                    <b>{{ $post?->custom_salary }}</b> <br>
+                                                    <span>{{ $post?->salaryType?->name }}</span>
+                                                @endif
+                                            </td>
+                                            <td>{{ formatDate($post?->deadline) }}</td>
+                                            <td>
+                                                @if ($post?->deadline > date('Y-m-d'))
+                                                    <span class="badge bg-primary text-dark">Active</span>
+                                                @else
+                                                    <span class="badge bg-danger text-dark">Expired</span>
+                                                @endif
+                                            </td>
                                             <td style="width: 20%">
-                                                <a href="{{ route('admin.job-category.edit', $item->id) }}"
+                                                <a href="{{ route('admin.jobs.edit', $post->id) }}"
                                                     class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin.job-category.destroy', $item->id) }}"
+                                                <a href="{{ route('admin.jobs.destroy', $post->id) }}"
                                                     class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">No Result Found</td>
+                                            <td colspan="6" class="text-center">No Result Found</td>
                                         </tr>
-                                    @endforelse --}}
+                                    @endforelse
                                 </table>
                             </div>
                         </div>
                         <div class="card-footer text-right">
                             <nav class="d-inline-block">
-                                {{-- @if ($jobCategory->hasPages())
-                                    {{ $jobCategory->withQueryString()->links() }}
-                                @endif --}}
+                                @if ($allPost->hasPages())
+                                    {{ $allPost->withQueryString()->links() }}
+                                @endif
                             </nav>
                         </div>
                     </div>
