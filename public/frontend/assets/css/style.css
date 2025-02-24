@@ -10046,3 +10046,16 @@ ul.timeline > li:before {
     height: 20px;
     z-index: 400;
 }
+
+/* taginput */
+.tag.label.label-info {
+    background: var(--colorPrimary);
+    padding: 5px;
+}
+.bootstrap-tagsinput input {
+    height: 40px;
+}
+.bootstrap-tagsinput {
+    width: 100%;
+    box-shadow: none;
+}

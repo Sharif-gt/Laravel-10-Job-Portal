@@ -9,7 +9,8 @@
 
             <li><a class="btn btn-border mb-20 {{ sidebarActive(['company.plans.*']) }}"
                     href="{{ route('company.plans.index') }}">Plans</a></li>
-            <li><a class="btn btn-border mb-20" href="candidate-profile-save-jobs.html">Saved Jobs</a></li>
+            <li><a class="btn btn-border mb-20 {{ sidebarActive(['company.jobs-post.*']) }}"
+                    href="{{ route('company.jobs-post.index') }}">All Jobs</a></li>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

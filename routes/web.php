@@ -9,6 +9,7 @@ use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\Company\AjaxRequestController;
 use App\Http\Controllers\Company\CompanyAccountController;
 use App\Http\Controllers\Company\CompanyDashboardController;
+use App\Http\Controllers\Company\CompanyJobController;
 use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Company\PlanDetailsController;
 use App\Http\Controllers\Frontend\CandidatePageController;
@@ -103,4 +104,7 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix
     Route::get('orders', [PlanDetailsController::class, 'planIndex'])->name('plans.index');
     Route::get('orders/{id}', [PlanDetailsController::class, 'showPlan'])->name('plans.show');
     Route::get('orders/invoice/{id}', [PlanDetailsController::class, 'invoice'])->name('plans.invoice');
+
+    /** job post Routs */
+    Route::resource('jobs-post', CompanyJobController::class);
 });
