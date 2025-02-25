@@ -81,7 +81,16 @@
                                                     <span class="badge bg-danger text-dark">Expired</span>
                                                 @endif
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <div class="form-group" style="margin-bottom: 10px">
+                                                    <label class="custom-switch mt-2">
+                                                        <input @checked($post?->status == 'active') type="checkbox"
+                                                            data-id="{{ $post?->id }}" name="custom-switch-checkbox"
+                                                            class="custom-switch-input post-status">
+                                                        <span class="custom-switch-indicator"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
                                             <td style="width: 20%">
                                                 <a href="{{ route('admin.jobs.edit', $post->id) }}"
                                                     class="btn btn-primary"><i class="fas fa-edit"></i></a>
@@ -110,3 +119,29 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('.post-status').on('change', function() {
+                let id = $(this).data('id');
+
+                $.ajax({
+                    method: "POST",
+                    url: "{{ route('admin.job-status.update', ':id') }}".replace(':id', id),
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.message == 'success') {
+                            window.location.reload();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+
+                    }
+                })
+            });
+        });
+    </script>
+@endpush

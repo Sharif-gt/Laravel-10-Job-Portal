@@ -22,6 +22,7 @@ use App\Models\Skill;
 use App\Models\State;
 use App\Services\Notify;
 use App\Traits\Searchable;
+use Flasher\Notyf\Laravel\Facade\Notyf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -218,5 +219,18 @@ class JobController extends Controller
 
             return response(['message' => 'Something went wrong. Please try again!'], 500);
         }
+    }
+
+    /**
+     * Job status change with ajax.
+     */
+    public function jobStatus(string $id): Response
+    {
+        $job = Job::findOrFail($id);
+        $job->status = $job->status == 'active' ? 'pending' : 'active';
+        $job->save();
+
+        Notify::updatedNotification();
+        return response(['message' => 'success'], 200);
     }
 }
