@@ -61,3 +61,16 @@ if (!function_exists('formatDate')) {
         return date('d M Y', strtotime($date));
     }
 }
+
+/**store user plan in session */
+
+if (!function_exists('storeUserPlan')) {
+    function storeUserPlan()
+    {
+        session()->forget('user_plan');
+        session([
+            'user_plan' => isset(auth()->user()?->company?->userPlan) ?
+                auth()->user()->company->userPlan : []
+        ]);
+    }
+}

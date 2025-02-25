@@ -44,8 +44,15 @@ class CompanyJobController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
+        storeUserPlan();
+        $userPlan = session('user_plan');
+        if ($userPlan->job_limit < 1) {
+            Notify::errorNotification('You have reached your plan limit please update your plan!');
+            return to_route('company.jobs-post.index');
+        }
+
         $category = JobCategory::all();
         $country = Country::all();
         $salaryType = SalaryType::all();
@@ -64,6 +71,16 @@ class CompanyJobController extends Controller
      */
     public function store(CompanyJobCreateRequest $request): RedirectResponse
     {
+        if (session('user_plan')->featured_job_limit < 1) {
+            Notify::errorNotification('You have reached your featured job limit please update your plan!');
+            return redirect()->back();
+        }
+
+        if (session('user_plan')->highlight_job_limit < 1) {
+            Notify::errorNotification('You have reached your highlight job limit please update your plan!');
+            return redirect()->back();
+        }
+
         $storeData = new Job();
         $storeData->title = $request->title;
         $storeData->company_id = auth()->user()->company->id;
@@ -88,6 +105,22 @@ class CompanyJobController extends Controller
         $storeData->highlight = $request->highlight;
         $storeData->description = $request->description;
         $storeData->save();
+
+        if ($storeData) {
+            $userPlan = auth()->user()->company->userPlan;
+            $userPlan->job_limit = $userPlan->job_limit - 1;
+
+            if ($storeData->featured == 1) {
+                $userPlan->featured_job_limit = $userPlan->featured_job_limit - 1;
+            }
+
+            if ($storeData->highlight == 1) {
+                $userPlan->highlight_job_limit = $userPlan->highlight_job_limit - 1;
+            }
+
+            $userPlan->save();
+            storeUserPlan();
+        }
 
         foreach ($request->tags as $tag) {
             $storeTag = new PostTag();
@@ -122,6 +155,7 @@ class CompanyJobController extends Controller
     public function edit(string $id): View
     {
         $jobPost = Job::findOrFail($id);
+        abort_if($jobPost->company_id !== auth()->user()->company->id, 404);
         $category = JobCategory::all();
         $country = Country::all();
         $salaryType = SalaryType::all();

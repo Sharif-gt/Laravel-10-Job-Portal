@@ -22,4 +22,10 @@ class Notify
     {
         notyf()->addSuccess('Deleted Successfully.');
     }
+
+    // error Notification
+    static function errorNotification(string $error)
+    {
+        notyf()->addError($error, 'Error!');
+    }
 }

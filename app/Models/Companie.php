@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Companie extends Model
 {
@@ -50,5 +51,10 @@ class Companie extends Model
     function teamSize(): BelongsTo
     {
         return $this->belongsTo(TeamSize::class, 'team_size_id', 'id');
+    }
+
+    function userPlan(): HasOne
+    {
+        return $this->hasOne(UserPlan::class, 'company_id', 'id');
     }
 }

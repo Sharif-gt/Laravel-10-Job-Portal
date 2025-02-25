@@ -37,6 +37,7 @@
                                         <th>Salary</th>
                                         <th>Deadline</th>
                                         <th>Status</th>
+                                        <th>Approve</th>
                                         <th>Action</th>
                                     </tr>
                                     @forelse ($allPost as $post)
@@ -72,12 +73,15 @@
                                             </td>
                                             <td>{{ formatDate($post?->deadline) }}</td>
                                             <td>
-                                                @if ($post?->deadline > date('Y-m-d'))
+                                                @if ($post?->status == 'pending')
+                                                    <span class="badge bg-warning text-dark">Pending</span>
+                                                @elseif ($post?->deadline > date('Y-m-d'))
                                                     <span class="badge bg-primary text-dark">Active</span>
                                                 @else
                                                     <span class="badge bg-danger text-dark">Expired</span>
                                                 @endif
                                             </td>
+                                            <td></td>
                                             <td style="width: 20%">
                                                 <a href="{{ route('admin.jobs.edit', $post->id) }}"
                                                     class="btn btn-primary"><i class="fas fa-edit"></i></a>

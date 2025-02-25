@@ -90,6 +90,7 @@ class JobController extends Controller
         $storeData->apply_on = $request->receive_applications;
         $storeData->featured = $request->featured;
         $storeData->highlight = $request->highlight;
+        $storeData->status = 'active';
         $storeData->description = $request->description;
         $storeData->save();
 
