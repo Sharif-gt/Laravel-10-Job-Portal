@@ -12,6 +12,7 @@ use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyJobController;
 use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Company\PlanDetailsController;
+use App\Http\Controllers\Frontend\AllJobPageController;
 use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompanyPageController;
@@ -33,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 
 /* Home Routs */
 
-Route::get('/', [FrontendController::class, 'index']);
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 /* Company Routs */
 Route::get('/companies', [CompanyPageController::class, 'allCompany'])->name('companies');
@@ -52,6 +53,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+/* All Jobs Routs */
+Route::get('/all-jobs', [AllJobPageController::class, 'index'])->name('all.jobs');
 
 require __DIR__ . '/auth.php';
 

@@ -10059,3 +10059,13 @@ ul.timeline > li:before {
     width: 100%;
     box-shadow: none;
 }
+
+.job-skill {
+    background: var(--colorPrimary) !important;
+    padding: 7px 10px 7px 10px !important;
+    color: white !important;
+}
+
+.job-skill:hover {
+    color: white !important;
+}

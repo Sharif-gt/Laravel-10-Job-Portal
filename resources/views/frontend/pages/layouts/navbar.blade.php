@@ -8,10 +8,11 @@
             <div class="header-nav">
                 <nav class="nav-main-menu">
                     <ul class="main-menu">
-                        <li class="has-children"><a class="{{ sidebarActive(['/']) }}"
-                                href="{{ url('/') }}">Home</a>
+                        <li class="has-children"><a class="{{ sidebarActive(['home']) }}"
+                                href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="has-children"><a href="jobs-list.html">Find a Job</a></li>
+                        <li class="has-children"><a class="{{ sidebarActive(['all.jobs']) }}"
+                                href="{{ route('all.jobs') }}">Find a Job</a></li>
                         <li class="has-children"><a class="{{ sidebarActive(['companies', 'companies.page']) }}"
                                 href="{{ route('companies') }}">Recruiters</a></li>
                         <li class="has-children"><a class="{{ sidebarActive(['candidates', 'candidates.page']) }}"
