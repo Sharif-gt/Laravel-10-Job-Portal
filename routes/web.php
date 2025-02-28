@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
 /* All Jobs Routs */
 Route::get('/all-jobs', [AllJobPageController::class, 'index'])->name('all.jobs');
+Route::get('/all-jobs/{slug}', [AllJobPageController::class, 'jobDetail'])->name('all.jobs.detail');
 
 require __DIR__ . '/auth.php';
 

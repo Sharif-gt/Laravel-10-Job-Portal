@@ -63,4 +63,14 @@ class Job extends Model
     {
         return $this->hasMany(JobSkill::class, 'job_id', 'id');
     }
+
+    function jobCountry(): BelongsTo
+    {
+        return $this->belongsTo(Country::class, 'country_id', 'id');
+    }
+
+    function jobState(): BelongsTo
+    {
+        return $this->belongsTo(State::class, 'state_id', 'id');
+    }
 }

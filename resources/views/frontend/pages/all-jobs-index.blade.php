@@ -71,8 +71,8 @@
                                                             alt="joblist"></div>
                                                     <div class="right-info"><a class="name-job"
                                                             href="{{ route('companies.page', $job?->company?->slug) }}">{{ $job?->company?->name }}</a><span
-                                                            class="location-small">{{ $job?->company?->companyCountry?->name }}
-                                                            {{ $job?->company?->companyState?->name }}</span>
+                                                            class="location-small">{{ $job?->jobCountry?->name }},
+                                                            {{ $job?->jobState?->name }}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,7 +88,9 @@
                                             </div>
                                         </div>
                                         <div class="card-block-info">
-                                            <h4><a href="job-details.html">{{ $job?->title }}</a></h4>
+                                            <h4><a
+                                                    href="{{ route('all.jobs.detail', $job?->slug) }}">{{ $job?->title }}</a>
+                                            </h4>
                                             <div class="mt-5"><span
                                                     class="card-briefcase">{{ $job?->jobType?->name }}</span><span
                                                     class="card-time"><span>{{ $job?->created_at->diffForHumans() }}</span></span>
@@ -109,19 +111,20 @@
                                                 <div class="row">
                                                     <div class="col-lg-7 col-7">
                                                         @if ($job?->salary_mode === 'range')
-                                                            <span class="card-text-price">{{ $job?->min_salary }} -
+                                                            <span class="card-text-price">Salary: {{ $job?->min_salary }} -
                                                                 {{ $job?->max_salary }}
                                                                 {{ config('generalSetting.site_default_currency') }}</span>
                                                             <span class="text-muted">/{{ $job?->salaryType?->name }}</span>
                                                         @elseif ($job?->salary_mode === 'custom')
-                                                            <span class="card-text-price">{{ $job?->custom_salary }}</span>
+                                                            <span class="card-text-price">Salary:
+                                                                {{ $job?->custom_salary }}</span>
                                                         @endif
                                                     </div>
                                                     <div class="col-lg-5 col-5 text-end">
-                                                        <div class="btn btn-apply-now">Full Details</div>
-                                                        {{-- <div class="btn btn-apply-now" data-bs-toggle="modal"
-                                                            data-bs-target="#ModalApplyJobForm">
-                                                            Full Details</div> --}}
+                                                        <div class="btn">
+                                                            <i class="far fa-bookmark"></i>
+                                                            {{-- <i class="fas fa-bookmark"></i> --}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -145,31 +148,43 @@
                 <div class="col-lg-3 col-md-12 col-sm-12 col-12">
                     <div class="sidebar-shadow none-shadow mb-30">
                         <div class="sidebar-filters">
-                            <div class="filter-block head-border mb-30">
-                                <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
-                            </div>
-                            <div class="filter-block mb-20">
-                                <div class="form-group select-style">
-                                    <select class="form-control form-icons select-active">
-                                        <option>New York, US</option>
-                                        <option>London</option>
-                                        <option>Paris</option>
-                                        <option>Berlin</option>
-                                    </select>
+                            <form action="">
+                                <div class="filter-block head-border mb-30">
+                                    <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
                                 </div>
-                            </div>
-                            <div class="filter-block mb-30">
-                                <div class="form-group select-style">
-                                    <select class="form-control form-icons select-active">
-                                        <option>Industry</option>
-                                        <option>London</option>
-                                        <option>Paris</option>
-                                        <option>Berlin</option>
-                                    </select>
-                                    <button class="submit btn btn-default mt-10 rounded-1 w-100"
-                                        type="submit">Search</button>
+                                <div class="filter-block mb-20">
+                                    <div class="form-group select-style">
+                                        <input class="from-control" name="search" type="text" placeholder="Search">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="filter-block mb-30">
+                                    <div class="form-group select-style">
+                                        <select class="form-control form-icons select-active country">
+                                            <option>Country</option>
+                                            @foreach ($countries as $item)
+                                                <option value="{{ $item?->id }}">{{ $item?->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="filter-block mb-30">
+                                    <div class="form-group select-style">
+                                        <select class="form-control form-icons select-active state">
+                                            <option>State</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="filter-block mb-30">
+                                    <div class="form-group select-style">
+                                        <select class="form-control form-icons select-active city">
+                                            <option>City</option>
+                                        </select>
+                                        <button class="submit btn btn-default mt-10 rounded-1 w-100"
+                                            type="submit">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+
                             <div class="filter-block mb-20">
                                 <h5 class="medium-heading mb-15">Industry</h5>
                                 <div class="form-group">
@@ -470,3 +485,50 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        // country,state,city ajax
+        $(document).ready(function() {
+            $(".country").on("change", function() {
+                let country_id = $(this).val();
+                $(".city").html("");
+
+                $.ajax({
+                    method: "GET",
+                    url: "{{ route('get-states', ':id') }}".replace(':id', country_id),
+                    data: {},
+                    success: function(response) {
+                        let html = "";
+
+                        $.each(response, function(index, value) {
+                            html += `<option value="${value.id}">${value.name}</option>`
+                        });
+
+                        $(".state").html(html);
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            })
+
+            $(".state").on("change", function() {
+                let state_id = $(this).val();
+
+                $.ajax({
+                    method: "GET",
+                    url: "{{ route('get-cities', ':id') }}".replace(':id', state_id),
+                    data: {},
+                    success: function(response) {
+                        let html = "";
+
+                        $.each(response, function(index, value) {
+                            html += `<option value="${value.id}">${value.name}</option>`
+                        });
+                        $(".city").html(html);
+                    },
+                    error: function(xhr, status, error) {}
+                });
+            })
+        })
+    </script>
+@endpush
