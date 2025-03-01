@@ -73,4 +73,19 @@ class Job extends Model
     {
         return $this->belongsTo(State::class, 'state_id', 'id');
     }
+
+    function jobCity(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'city_id', 'id');
+    }
+
+    function jobExperience(): BelongsTo
+    {
+        return $this->belongsTo(Experience::class, 'job_experience_id', 'id');
+    }
+
+    function jobEducation(): BelongsTo
+    {
+        return $this->belongsTo(Education::class, 'education_id', 'id');
+    }
 }

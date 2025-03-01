@@ -17,4 +17,12 @@ class AllJobPageController extends Controller
 
         return view('frontend.pages.all-jobs-index', compact('jobs', 'countries'));
     }
+
+    public function jobDetail(string $slug): View
+    {
+        $jobs = Job::where('slug', $slug)->firstOrFail();
+        $openJob = Job::where('company_id', $jobs?->company?->id)->where(['status' => 'active'])->where('deadline', '>=', date('Y-m-d'))->count();
+
+        return view('frontend.pages.job-details', compact('jobs', 'openJob'));
+    }
 }
