@@ -155,7 +155,7 @@
                         <div class="sidebar-filters">
                             <form action="{{ route('all.jobs') }}" method="GET">
                                 <div class="filter-block head-border mb-30">
-                                    <h5>Advance Filter <a class="link-reset" href="#">Reset</a></h5>
+                                    <h5>Search Job<a class="link-reset" href="#">Reset</a></h5>
                                 </div>
                                 <div class="filter-block mb-20">
                                     <div class="form-group select-style">

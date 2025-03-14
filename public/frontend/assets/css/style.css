@@ -10093,3 +10093,8 @@ ul.timeline > li:before {
 .box-map iframe {
     height: 200px;
 }
+
+.x-radio{
+    height: 18px !important;
+    width: 40px !important;
+}
