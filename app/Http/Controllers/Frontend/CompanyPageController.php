@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Companie;
 use App\Models\Country;
 use App\Models\Industry;
+use App\Models\Job;
 use App\Models\Organization;
 use App\Models\State;
 use Illuminate\Http\Request;
@@ -51,6 +52,8 @@ class CompanyPageController extends Controller
     function companyPage(string $slug): View
     {
         $company = Companie::where(['profile_completion' => 1, 'visibility' => 1, 'slug' => $slug])->firstOrFail();
-        return view('frontend.pages.company.company-info', compact('company'));
+        $openJob = Job::where('company_id', $company?->id)->where('status', 'active')->where('deadline', '>=', date('Y-m-d'))->paginate(10);
+
+        return view('frontend.pages.company.company-info', compact('company', 'openJob'));
     }
 }

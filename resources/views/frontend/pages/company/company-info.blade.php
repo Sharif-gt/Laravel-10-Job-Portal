@@ -63,131 +63,86 @@
                     <div class="box-related-job content-page">
                         <h5 class="mb-30">Latest Jobs</h5>
                         <div class="box-list-jobs display-list">
-                            <div class="col-xl-12 col-12">
-                                <div class="card-grid-2 hover-up"><span class="flash"></span>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="card-grid-2-image-left">
-                                                <div class="image-box"><img src="assets/imgs/brands/brand-6.png"
-                                                        alt="joblist"></div>
-                                                <div class="right-info"><a class="name-job" href="">Quora
-                                                        JSC</a><span class="location-small">New York, US</span></div>
+                            @forelse ($openJob as $job)
+                                <div class="col-xl-12 col-12">
+                                    <div class="card-grid-2 hover-up"><span class="flash"></span>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                                <div class="card-grid-2-image-left">
+                                                    <div class="image-box"><img src="{{ asset($job?->company?->logo) }}"
+                                                            alt="joblist"></div>
+                                                    <div class="right-info"><a class="name-job"
+                                                            href="{{ route('companies.page', $job?->company?->slug) }}">{{ $job?->company?->name }}</a><span
+                                                            class="location-small">{{ $job?->jobCountry?->name }},
+                                                            {{ $job?->jobState?->name }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
+                                                <div class="pl-15 mb-15 mt-30">
+                                                    @if ($job?->highlight)
+                                                        <a class="btn btn-grey-small mr-5" href="javascropt:;">Highlight</a>
+                                                    @endif
+                                                    @if ($job?->featured)
+                                                        <a class="btn btn-grey-small mr-5" href="javascropt:;">Featured</a>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                                            <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5"
-                                                    href="#">Adobe XD</a><a class="btn btn-grey-small mr-5"
-                                                    href="#">Figma</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <h4><a href="job-details.html">Senior System Engineer</a></h4>
-                                        <div class="mt-5"><span class="card-briefcase">Part time</span><span
-                                                class="card-time"><span>5</span><span> mins ago</span></span></div>
-                                        <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing
-                                            elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
-                                        <div class="card-2-bottom mt-20">
-                                            <div class="row">
-                                                <div class="col-lg-7 col-7"><span class="card-text-price">$800</span><span
-                                                        class="text-muted">/Hour</span></div>
-                                                <div class="col-lg-5 col-5 text-end">
-                                                    <div class="btn btn-apply-now" data-bs-toggle="modal"
-                                                        data-bs-target="#ModalApplyJobForm">
-                                                        Apply now</div>
+                                        <div class="card-block-info">
+                                            <h4><a
+                                                    href="{{ route('all.jobs.detail', $job?->slug) }}">{{ $job?->title }}</a>
+                                            </h4>
+                                            <div class="mt-5"><span
+                                                    class="card-briefcase">{{ $job?->jobType?->name }}</span><span
+                                                    class="card-time"><span>{{ $job?->created_at->diffForHumans() }}</span></span>
+                                            </div>
+                                            <p class="font-sm color-text-paragraph mt-10">
+                                                {!! Str::limit($job?->description, 230) !!}</p>
+                                            <div class="pl-15 mb-15 mt-30">
+                                                @foreach ($job?->jobSkill as $skill)
+                                                    @if ($loop->index <= 2)
+                                                        <a class="btn btn-grey-small mr-5 job-skill"
+                                                            href="javascript:;">{{ $skill?->skillName?->name }}</a>
+                                                    @elseif ($loop->index == 3)
+                                                        <a class="btn btn-grey-small mr-5" href="javascript:;">More...</a>
+                                                    @endif
+                                                @endforeach
+                                            </div>
+                                            <div class="card-2-bottom mt-20">
+                                                <div class="row">
+                                                    <div class="col-lg-7 col-7">
+                                                        @if ($job?->salary_mode === 'range')
+                                                            <span class="card-text-price">Salary: {{ $job?->min_salary }} -
+                                                                {{ $job?->max_salary }}
+                                                                {{ config('generalSetting.site_default_currency') }}</span>
+                                                            <span class="text-muted">/{{ $job?->salaryType?->name }}</span>
+                                                        @elseif ($job?->salary_mode === 'custom')
+                                                            <span class="card-text-price">Salary:
+                                                                {{ $job?->custom_salary }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-lg-5 col-5 text-end">
+                                                        <div class="btn">
+                                                            <i class="far fa-bookmark"></i>
+                                                            {{-- <i class="fas fa-bookmark"></i> --}}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-12 col-12">
-                                <div class="card-grid-2 hover-up"><span class="flash"></span>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="card-grid-2-image-left">
-                                                <div class="image-box"><img src="assets/imgs/brands/brand-7.png"
-                                                        alt="joblist"></div>
-                                                <div class="right-info"><a class="name-job" href="">Nintendo</a><span
-                                                        class="location-small">New York,
-                                                        US</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                                            <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5"
-                                                    href="#">Adobe XD</a><a class="btn btn-grey-small mr-5"
-                                                    href="#">Figma</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <h4><a href="job-details.html">Products Manager</a></h4>
-                                        <div class="mt-5"><span class="card-briefcase">Full time</span><span
-                                                class="card-time"><span>6</span><span> mins ago</span></span></div>
-                                        <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing
-                                            elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
-                                        <div class="card-2-bottom mt-20">
-                                            <div class="row">
-                                                <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span
-                                                        class="text-muted">/Hour</span></div>
-                                                <div class="col-lg-5 col-5 text-end">
-                                                    <div class="btn btn-apply-now" data-bs-toggle="modal"
-                                                        data-bs-target="#ModalApplyJobForm">
-                                                        Apply now</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-12 col-12">
-                                <div class="card-grid-2 hover-up"><span class="flash"></span>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-12">
-                                            <div class="card-grid-2-image-left">
-                                                <div class="image-box"><img src="assets/imgs/brands/brand-8.png"
-                                                        alt="joblist"></div>
-                                                <div class="right-info"><a class="name-job"
-                                                        href="">Periscope</a><span class="location-small">New York,
-                                                        US</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 text-start text-md-end pr-60 col-md-6 col-sm-12">
-                                            <div class="pl-15 mb-15 mt-30"><a class="btn btn-grey-small mr-5"
-                                                    href="#">Adobe XD</a><a class="btn btn-grey-small mr-5"
-                                                    href="#">Figma</a></div>
-                                        </div>
-                                    </div>
-                                    <div class="card-block-info">
-                                        <h4><a href="job-details.html">Lead Quality Control QA</a></h4>
-                                        <div class="mt-5"><span class="card-briefcase">Full time</span><span
-                                                class="card-time"><span>6</span><span> mins ago</span></span></div>
-                                        <p class="font-sm color-text-paragraph mt-10">Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing
-                                            elit. Recusandae architecto eveniet, dolor quo repellendus pariatur.</p>
-                                        <div class="card-2-bottom mt-20">
-                                            <div class="row">
-                                                <div class="col-lg-7 col-7"><span class="card-text-price">$250</span><span
-                                                        class="text-muted">/Hour</span></div>
-                                                <div class="col-lg-5 col-5 text-end">
-                                                    <div class="btn btn-apply-now" data-bs-toggle="modal"
-                                                        data-bs-target="#ModalApplyJobForm">
-                                                        Apply now</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @empty
+                                <div class="col-xl-12 col-12 card-2-bottom mt-20">No Data Found</div>
+                            @endforelse
+
                         </div>
                         <div class="paginations mt-60">
                             <ul class="pager">
-                                <li><a class="pager-prev" href="#"><i class="fas fa-arrow-left"></i></a></li>
-                                <li><a class="pager-number" href="#">1</a></li>
-                                <li><a class="pager-number" href="#">2</a></li>
-                                <li><a class="pager-number active" href="#">3</a></li>
-                                <li><a class="pager-number" href="#">4</a></li>
-                                <li><a class="pager-next" href="#"><i class="fas fa-arrow-right"></i></a></li>
+                                @if ($openJob->hasPages())
+                                    {{ $openJob->withQueryString()->links() }}
+                                @endif
                             </ul>
                         </div>
                     </div>
