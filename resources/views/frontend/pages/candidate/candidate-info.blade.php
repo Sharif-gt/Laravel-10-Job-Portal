@@ -219,10 +219,9 @@
                                     {{ $candidateInfo?->candidateCountry->name ? ', ' . $candidateInfo?->candidateCountry->name : '' }}
                                 </li>
                                 <li>Phone: {{ $candidateInfo?->phone_one }}</li>
-                                <li>Email: {{ auth()->user()->email }}</li>
+                                {{-- <li>Email: {{ auth()->user()->email }}</li> --}}
                             </ul>
-                            <div class="mt-30"><a class="btn btn-send-message"
-                                    href="mailto:{{ auth()->user()->email }}">Send Message</a>
+                            <div class="mt-30"><a class="btn btn-send-message" href="">Send Message</a>
                             </div>
                         </div>
                     </div>
