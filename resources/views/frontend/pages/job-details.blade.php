@@ -28,8 +28,13 @@
                             class="card-time">{{ $jobs?->created_at->diffForHumans() }}</span></div>
                 </div>
                 <div class="col-lg-4 col-md-12 text-lg-end">
-                    <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" data-bs-toggle="modal"
-                        data-bs-target="#ModalApplyJobForm">Apply now</div>
+                    @if ($jobApplied)
+                        <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" id="postJob"
+                            style="background-color: #301ca7">
+                            Applied</div>
+                    @else
+                        <div class="btn btn-apply-icon btn-apply btn-apply-big hover-up" id="postJob">Apply now</div>
+                    @endif
                 </div>
             </div>
             <div class="border-bottom pt-10 pb-10"></div>
@@ -179,8 +184,7 @@
                     <div class="author-single"><span>{{ $jobs?->company?->name }}</span></div>
                     <div class="single-apply-jobs">
                         <div class="row align-items-center">
-                            <div class="col-md-5"><a class="btn btn-default mr-15" href="#">Apply now</a><a
-                                    class="btn btn-border" href="#">Save job</a></div>
+                            <div class="col-md-5"><a class="btn btn-border" href="#">Save job</a></div>
                             <div class="col-md-7 text-lg-end social-share">
                                 <h6 class="color-text-paragraph-2 d-inline-block d-baseline mr-10">Share this</h6><a
                                     class="mr-5 d-inline-block d-middle" data-social="facebook" href="#"><img
@@ -232,3 +236,26 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#postJob').on('click', function() {
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('post.job', $jobs->id) }}",
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        notyf.success(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        let errors = xhr.responseJSON.message;
+                        notyf.error(errors);
+                    }
+                })
+            });
+        })
+    </script>
+@endpush

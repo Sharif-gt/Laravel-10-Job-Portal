@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Country;
 use App\Models\Job;
 use App\Models\JobCategory;
+use App\Models\JobPost;
 use App\Models\JobType;
 use App\Models\State;
 use Illuminate\Http\Request;
@@ -63,7 +64,8 @@ class AllJobPageController extends Controller
     {
         $jobs = Job::where('slug', $slug)->firstOrFail();
         $openJob = Job::where('company_id', $jobs?->company?->id)->where(['status' => 'active'])->where('deadline', '>=', date('Y-m-d'))->count();
+        $jobApplied = JobPost::where(['user_id' => auth()->user()->candidateProfile->id, 'job_id' => $jobs->id])->exists();
 
-        return view('frontend.pages.job-details', compact('jobs', 'openJob'));
+        return view('frontend.pages.job-details', compact('jobs', 'openJob', 'jobApplied'));
     }
 }

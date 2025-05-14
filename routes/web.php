@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompanyPageController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\JobPostController;
 use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,9 @@ Route::middleware('auth')->group(function () {
 /* All Jobs Routs */
 Route::get('/all-jobs', [AllJobPageController::class, 'index'])->name('all.jobs');
 Route::get('/all-jobs/{slug}', [AllJobPageController::class, 'jobDetail'])->name('all.jobs.detail');
+
+/* All Jobs post Routs */
+Route::post('/post-job/{id}', [JobPostController::class, 'jobPost'])->name('post.job');
 
 require __DIR__ . '/auth.php';
 
