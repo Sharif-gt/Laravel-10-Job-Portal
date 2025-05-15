@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Candidate;
 
 use App\Http\Controllers\Controller;
+use App\Models\JobPost;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -11,5 +12,13 @@ class CandidateDashboardController extends Controller
     public function index(): View
     {
         return view('frontend.candidate-dashboard.dashboard');
+    }
+
+    public function appliedJob()
+    {
+        $countApplied = JobPost::where('user_id', auth()->user()->candidateProfile->id)->count();
+        $appliedJob = JobPost::with('job')->where('user_id', auth()->user()->candidateProfile->id)->paginate();
+
+        return view('frontend.candidate-dashboard.applied-job.applied-job', compact('appliedJob', 'countApplied'));
     }
 }

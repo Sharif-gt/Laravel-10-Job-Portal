@@ -69,6 +69,7 @@ require __DIR__ . '/auth.php';
 Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'prefix' => 'candidate', 'as' => 'candidate.'], function () {
 
     Route::get('/dashboard', [CandidateDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/applied-job', [CandidateDashboardController::class, 'appliedJob'])->name('applied-job');
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile');
     Route::post('/profile-update', [CandidateProfileController::class, 'store'])->name('profile-update');
     Route::post('/profile-details', [CandidateProfileController::class, 'profileInfo'])->name('profile-details');
