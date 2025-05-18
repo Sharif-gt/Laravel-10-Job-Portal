@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Candidate\BookmarkController;
 use App\Http\Controllers\Candidate\CandidateAccountController;
 use App\Http\Controllers\Candidate\CandidateDashboardController;
 use App\Http\Controllers\Candidate\CandidateEducationController;
@@ -62,6 +63,9 @@ Route::get('/all-jobs/{slug}', [AllJobPageController::class, 'jobDetail'])->name
 
 /* All Jobs post Routs */
 Route::post('/post-job/{id}', [JobPostController::class, 'jobPost'])->name('post.job');
+
+/* job bookmarked route */
+Route::get('/bookmark/{id}', [BookmarkController::class, 'bookmarked'])->name('bookmark');
 
 require __DIR__ . '/auth.php';
 
