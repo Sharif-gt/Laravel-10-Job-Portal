@@ -35,6 +35,7 @@ class CompanyJobController extends Controller
     public function index(): View
     {
         $query = Job::query();
+        $query->withCount('appliedJob');
         $this->search($query, ['title', 'salary_mode']);
         $allPost = $query->where('company_id', auth()->user()->company->id)->orderBy('id', 'DESC')->paginate(20);
 

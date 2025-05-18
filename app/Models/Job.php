@@ -88,4 +88,9 @@ class Job extends Model
     {
         return $this->belongsTo(Education::class, 'education_id', 'id');
     }
+
+    function appliedJob(): HasMany
+    {
+        return $this->hasMany(JobPost::class, 'job_id', 'id');
+    }
 }

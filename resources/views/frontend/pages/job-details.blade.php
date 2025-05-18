@@ -248,6 +248,7 @@
                         _token: "{{ csrf_token() }}"
                     },
                     success: function(response) {
+                        window.location.reload();
                         notyf.success(response.message);
                     },
                     error: function(xhr, status, error) {

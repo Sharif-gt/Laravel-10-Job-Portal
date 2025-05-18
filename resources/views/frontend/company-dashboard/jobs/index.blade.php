@@ -50,7 +50,7 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>Category/Role</th>
-                                        <th>Salary</th>
+                                        <th>Applications</th>
                                         <th>Deadline</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -68,18 +68,7 @@
                                                 <b>{{ $post?->jobCategory?->name }}</b> <br>
                                                 <span>{{ $post?->jobRole?->name }}</span>
                                             </td>
-                                            <td>
-                                                @if ($post?->salary_mode === 'range')
-                                                    <div>
-                                                        <b>{{ $post?->min_salary }} - {{ $post?->max_salary }}
-                                                            {{ config('generalSetting.site_default_currency') }}</b> <br>
-                                                        <span>{{ $post?->salaryType?->name }}</span>
-                                                    </div>
-                                                @else
-                                                    <b>{{ $post?->custom_salary }}</b> <br>
-                                                    <span>{{ $post?->salaryType?->name }}</span>
-                                                @endif
-                                            </td>
+                                            <td>{{ $post?->applied_job_count }} Applications</td>
                                             <td>{{ formatDate($post?->deadline) }}</td>
                                             <td>
                                                 @if ($post?->status == 'pending')
@@ -91,10 +80,28 @@
                                                 @endif
                                             </td>
                                             <td style="width: 20%">
-                                                <a href="{{ route('company.jobs-post.edit', $post->id) }}"
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#"
+                                                        role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        View
+                                                    </a>
+
+                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                        <li><a class="dropdown-item" href="#">All Aplications</a></li>
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ route('company.jobs-post.edit', $post->id) }}">Edit</a>
+                                                        </li>
+                                                        <li><a class="dropdown-item delete-item"
+                                                                href="{{ route('company.jobs-post.destroy', $post->id) }}">Delete</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                {{-- <a href="{{ route('company.jobs-post.edit', $post->id) }}"
                                                     class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ route('company.jobs-post.destroy', $post->id) }}"
-                                                    class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                                    class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a> --}}
                                             </td>
                                         </tr>
                                     @empty
