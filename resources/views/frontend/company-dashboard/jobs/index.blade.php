@@ -88,7 +88,9 @@
                                                     </a>
 
                                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                        <li><a class="dropdown-item" href="#">All Aplications</a></li>
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ route('company.applied-candidates', $post->id) }}">All
+                                                                Aplications</a></li>
                                                         <li><a class="dropdown-item"
                                                                 href="{{ route('company.jobs-post.edit', $post->id) }}">Edit</a>
                                                         </li>

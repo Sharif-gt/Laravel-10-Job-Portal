@@ -16,4 +16,9 @@ class JobPost extends Model
     {
         return $this->belongsTo(Job::class, 'job_id', 'id');
     }
+
+    function candidateProfile(): BelongsTo
+    {
+        return $this->belongsTo(Candidate::class, 'user_id', 'id');
+    }
 }

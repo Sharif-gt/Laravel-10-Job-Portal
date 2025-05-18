@@ -11,6 +11,7 @@ use App\Http\Controllers\Company\CompanyAccountController;
 use App\Http\Controllers\Company\CompanyDashboardController;
 use App\Http\Controllers\Company\CompanyJobController;
 use App\Http\Controllers\Company\CompanyProfileController;
+use App\Http\Controllers\Company\JobAppliedController;
 use App\Http\Controllers\Company\PlanDetailsController;
 use App\Http\Controllers\Frontend\AllJobPageController;
 use App\Http\Controllers\Frontend\CandidatePageController;
@@ -117,4 +118,7 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:company'], 'prefix
 
     /** job post Routs */
     Route::resource('jobs-post', CompanyJobController::class);
+
+    /** job Applied candidates Routs */
+    Route::get('/applied-candidates/{id}', [JobAppliedController::class, 'index'])->name('applied-candidates');
 });
