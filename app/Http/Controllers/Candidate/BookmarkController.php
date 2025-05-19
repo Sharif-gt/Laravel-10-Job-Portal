@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Candidate;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bookmark;
+use App\Services\Notify;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -27,5 +28,14 @@ class BookmarkController extends Controller
 
         // Return a success response
         return response(['message' => 'Job bookmarked successfully.', 'id' => $id], 200);
+    }
+
+    public function bookmarkDelete($id)
+    {
+        Bookmark::findOrFail($id)->delete();
+
+        Notify::deletedNotification();
+        // Return a success response
+        return to_route('candidate.bookmark-job');
     }
 }

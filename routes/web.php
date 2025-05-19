@@ -67,6 +67,7 @@ Route::post('/post-job/{id}', [JobPostController::class, 'jobPost'])->name('post
 /* job bookmarked route */
 Route::get('/bookmark/{id}', [BookmarkController::class, 'bookmarked'])->name('bookmark');
 
+
 require __DIR__ . '/auth.php';
 
 /* candidate dashboard */
@@ -75,6 +76,9 @@ Route::group(['middleware' => ['auth', 'verified', 'user.role:candidate'], 'pref
 
     Route::get('/dashboard', [CandidateDashboardController::class, 'index'])->name('dashboard');
     Route::get('/applied-job', [CandidateDashboardController::class, 'appliedJob'])->name('applied-job');
+    Route::get('/bookmark-job', [CandidateDashboardController::class, 'bookmarkedJob'])->name('bookmark-job');
+    // Route::get('/bookmark-remove/{id}', [CandidateDashboardController::class, 'bookmarkDelete'])->name('bookmark-remove');
+    Route::get('/bookmark-remove/{id}', [BookmarkController::class, 'bookmarkDelete'])->name('bookmark-remove');
     Route::get('/profile', [CandidateProfileController::class, 'index'])->name('profile');
     Route::post('/profile-update', [CandidateProfileController::class, 'store'])->name('profile-update');
     Route::post('/profile-details', [CandidateProfileController::class, 'profileInfo'])->name('profile-details');
