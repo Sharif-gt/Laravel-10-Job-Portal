@@ -28,7 +28,8 @@
                                 <li><a href="blog-details.html">Blog Single</a></li>
                             </ul>
                         </li>
-                        <li class="has-children"><a href="blog-grid.html">Blog</a></li>
+                        <li class="has-children"><a class="{{ sidebarActive(['all-blogs']) }}"
+                                href="{{ route('all-blogs') }}">Blog</a></li>
                     </ul>
                 </nav>
                 <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span

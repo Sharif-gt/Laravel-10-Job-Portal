@@ -15,6 +15,7 @@ use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Company\JobAppliedController;
 use App\Http\Controllers\Company\PlanDetailsController;
 use App\Http\Controllers\Frontend\AllJobPageController;
+use App\Http\Controllers\Frontend\BlogIndexController;
 use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompanyPageController;
@@ -66,6 +67,9 @@ Route::post('/post-job/{id}', [JobPostController::class, 'jobPost'])->name('post
 
 /* job bookmarked route */
 Route::get('/bookmark/{id}', [BookmarkController::class, 'bookmarked'])->name('bookmark');
+
+/* Frontend Blog route */
+Route::get('/all-blogs', [BlogIndexController::class, 'index'])->name('all-blogs');
 
 
 require __DIR__ . '/auth.php';
