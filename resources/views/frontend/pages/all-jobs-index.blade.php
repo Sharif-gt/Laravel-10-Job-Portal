@@ -121,12 +121,16 @@
                                                         @endif
                                                     </div>
                                                     @php
-                                                        $bookmarkedIds = App\Models\Bookmark::where(
-                                                            'user_id',
-                                                            auth()->user()->candidateProfile->id,
-                                                        )
-                                                            ->pluck('job_id')
-                                                            ->toArray();
+                                                        $bookmarkedIds = [];
+
+                                                        if (auth()->check() && auth()->user()->candidateProfile) {
+                                                            $bookmarkedIds = App\Models\Bookmark::where(
+                                                                'user_id',
+                                                                auth()->user()->candidateProfile->id,
+                                                            )
+                                                                ->pluck('job_id')
+                                                                ->toArray();
+                                                        }
                                                     @endphp
                                                     <div class="col-lg-5 col-5 text-end">
                                                         <div class="btn job-bookmark" data-id = "{{ $job?->id }}">
