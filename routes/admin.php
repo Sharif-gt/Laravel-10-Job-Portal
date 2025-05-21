@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -82,6 +83,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** price plan Routs */
     Route::resource('plans', PriceController::class);
+
+    /** Blogs Routs */
+    Route::resource('blogs', BlogController::class);
 
     /** order details Routs */
     Route::get('orders', [OrderDetailsController::class, 'orderIndex'])->name('orders.index');

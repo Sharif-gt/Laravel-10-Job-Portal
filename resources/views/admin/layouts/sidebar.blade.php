@@ -67,6 +67,15 @@
                 </ul>
             </li>
 
+            <!-- Blog -->
+            <li class="{{ sidebarActive(['admin.blogs.*']) }}">
+                <a class="nav-link" href="{{ route('admin.blogs.index') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Blogs</span>
+                </a>
+            </li>
+
             <!-- Orders -->
             <li class="{{ sidebarActive(['admin.orders.*']) }}">
                 <a class="nav-link" href="{{ route('admin.orders.index') }}">
