@@ -25,12 +25,14 @@
                             @forelse ($blogs as $item)
                                 <div class="col-lg-6 mb-30">
                                     <div class="card-grid-3 hover-up">
-                                        <div class="text-center card-grid-3-image"><a href="blog-details.html">
+                                        <div class="text-center card-grid-3-image"><a
+                                                href="{{ route('blog-detail', $item?->slug) }}">
                                                 <figure><img alt="joblist" src="{{ asset($item?->image) }}">
                                                 </figure>
                                             </a></div>
                                         <div class="card-block-info">
-                                            <h5><a href="blog-details.html">{{ $item?->title }}</a></h5>
+                                            <h5><a href="{{ route('blog-detail', $item?->slug) }}">{{ $item?->title }}</a>
+                                            </h5>
                                             <p class="mt-10 color-text-paragraph font-sm">
                                                 {{ Str::limit(strip_tags($item?->description), $limit = 150, $end = '....') }}
                                             </p>
@@ -83,7 +85,8 @@
                                         <figure class="thumb mr-15"><img src="{{ asset($item?->image) }}" alt="joblist">
                                         </figure>
                                         <div class="content">
-                                            <h5>{{ $item?->title }}</h5>
+                                            <h5><a href="{{ route('blog-detail', $item?->slug) }}">{{ $item?->title }}</a>
+                                            </h5>
                                             <div class="post-meta text-muted d-flex align-items-center mb-15">
                                                 <div class="author d-flex align-items-center mr-20">
                                                     <span>{{ $item?->created_at->diffForHumans() }}</span>

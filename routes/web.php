@@ -70,6 +70,7 @@ Route::get('/bookmark/{id}', [BookmarkController::class, 'bookmarked'])->name('b
 
 /* Frontend Blog route */
 Route::get('/all-blogs', [BlogIndexController::class, 'index'])->name('all-blogs');
+Route::get('/blogs/{slug}', [BlogIndexController::class, 'blogDetail'])->name('blog-detail');
 
 
 require __DIR__ . '/auth.php';

@@ -22,4 +22,11 @@ class BlogIndexController extends Controller
 
         return view('frontend.pages.blog.index', compact('blogs', 'feturedBlog', 'blogImage'));
     }
+
+    public function blogDetail(string $slug)
+    {
+        $blogShow = Blog::where('slug', $slug)->firstOrFail();
+
+        return view('frontend.pages.blog.blog-details', compact('blogShow'));
+    }
 }

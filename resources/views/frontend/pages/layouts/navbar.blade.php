@@ -28,7 +28,7 @@
                                 <li><a href="blog-details.html">Blog Single</a></li>
                             </ul>
                         </li>
-                        <li class="has-children"><a class="{{ sidebarActive(['all-blogs']) }}"
+                        <li class="has-children"><a class="{{ sidebarActive(['all-blogs', 'blog-detail']) }}"
                                 href="{{ route('all-blogs') }}">Blog</a></li>
                     </ul>
                 </nav>
