@@ -28,6 +28,17 @@
                 </a>
             </li>
 
+            <!-- Home Section -->
+            <li class="dropdown {{ sidebarActive(['admin.hero.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Home Section</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ sidebarActive(['admin.hero.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.hero.index') }}">Hero section</a></li>
+
+                </ul>
+            </li>
+
             <!-- Candidate Attributes -->
             <li class="dropdown {{ sidebarActive(['admin.languages.*', 'admin.professions.*', 'admin.skills.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>

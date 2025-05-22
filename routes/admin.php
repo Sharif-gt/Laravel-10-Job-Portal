@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobController;
@@ -87,6 +89,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** Blogs Routs */
     Route::resource('blogs', BlogController::class);
 
+    /** Hero Section Routs */
+    Route::resource('hero', HeroController::class);
+
     /** order details Routs */
     Route::get('orders', [OrderDetailsController::class, 'orderIndex'])->name('orders.index');
     Route::get('orders/{id}', [OrderDetailsController::class, 'showOrder'])->name('orders.show');
@@ -107,6 +112,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** site setting Routs */
     Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');
     Route::post('site-settings/store', [SiteSettingController::class, 'store'])->name('site-settings.store');
+
+    /** Hero Section Routs */
+    // Route::get('hero-section', [HeroSectionController::class, 'index'])->name('hero-section.index');
+    // Route::post('hero-section/update/1', [HeroSectionController::class, 'update'])->name('hero-section.update');
 
     // Route::get('verify-email', EmailVerificationPromptController::class)
     //     ->name('verification.notice');
