@@ -38,6 +38,17 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Show At Popular</label>
+                                    <select class="form-control select2 state" name="popular" aria-hidden="true">
+                                        <option @selected($editJob?->popular == 0) value="0">No</option>
+                                        <option @selected($editJob?->popular == 1) value="1">yes</option>
+                                    </select>
+                                    @error('popular')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="card-footer text-left">
                                 <button class="btn btn-primary">Update</button>

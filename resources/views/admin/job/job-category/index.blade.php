@@ -35,6 +35,7 @@
                                         <th>Icon</th>
                                         <th>Name</th>
                                         <th>Slug</th>
+                                        <th>Show at popular</th>
                                         <th>Action</th>
                                     </tr>
                                     @forelse ($jobCategory as $item)
@@ -42,6 +43,13 @@
                                             <td><i style="font-size: 20px" class="{{ $item?->icon }}"></i></td>
                                             <td>{{ $item?->name }}</td>
                                             <td>{{ $item?->slug }}</td>
+                                            <td>
+                                                @if ($item?->popular == 0)
+                                                    <span class="badge badge-danger">No</span>
+                                                @else
+                                                    <span class="badge badge-success">Yes</span>
+                                                @endif
+                                            </td>
                                             <td style="width: 20%">
                                                 <a href="{{ route('admin.job-category.edit', $item->id) }}"
                                                     class="btn btn-primary"><i class="fas fa-edit"></i></a>

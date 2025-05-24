@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
+            $table->boolean('popular')->default(0);
             $table->timestamps();
         });
     }

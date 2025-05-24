@@ -76,6 +76,7 @@ class JobCategoryController extends Controller
         $update = JobCategory::findOrFail($id);
         if ($request->filled('icon')) $update->icon = $request->icon;
         $update->name = $request->name;
+        $update->popular = $request->popular;
         $update->save();
 
         Notify::updatedNotification();
