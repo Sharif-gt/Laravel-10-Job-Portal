@@ -34,10 +34,13 @@
                     <span>Home Section</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ sidebarActive(['admin.hero.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.hero.index') }}">Hero section</a></li>
+                            href="{{ route('admin.hero.index') }}">Hero Section</a></li>
 
                     <li class="{{ sidebarActive(['admin.why-choose-us.*']) }}"><a class="nav-link"
                             href="{{ route('admin.why-choose-us.index') }}">Why Choose Us</a></li>
+
+                    <li class="{{ sidebarActive(['admin.learn-more.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.learn-more.index') }}">Learn More</a></li>
 
                 </ul>
             </li>

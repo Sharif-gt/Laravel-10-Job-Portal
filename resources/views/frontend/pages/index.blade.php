@@ -18,11 +18,7 @@
 
 
     <!-- Find Job Section-->
-    {{-- @include('frontend.pages.layouts.find-job') --}}
-
-
-    <!-- Count Section-->
-    {{-- @include('frontend.pages.layouts.count-section') --}}
+    @include('frontend.pages.layouts.find-job')
 
 
     <!-- Recruiters Section Section-->

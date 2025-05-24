@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Hero;
 use App\Models\Job;
 use App\Models\JobCategory;
+use App\Models\LearnMore;
 use App\Models\Price;
 use App\Models\WhyChooseUs;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ class FrontendController extends Controller
         }])->where('popular', 1)->get();
         $featuredJobs = Job::where(['status' => 'active'])->where(['featured' => 1])->where('deadline', '>=', date('Y-m-d'))->take(8)->orderBy('id', 'DESC')->get();
         $whyChooseUs = WhyChooseUs::first();
+        $learnMore = LearnMore::first();
 
-        return view('frontend.pages.index', compact('hero', 'price', 'popularJobCategory', 'totalJobs', 'featuredJobs', 'whyChooseUs'));
+        return view('frontend.pages.index', compact('hero', 'price', 'popularJobCategory', 'totalJobs', 'featuredJobs', 'whyChooseUs', 'learnMore'));
     }
 }
