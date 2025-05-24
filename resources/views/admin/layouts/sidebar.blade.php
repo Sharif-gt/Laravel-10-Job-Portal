@@ -36,6 +36,9 @@
                     <li class="{{ sidebarActive(['admin.hero.*']) }}"><a class="nav-link"
                             href="{{ route('admin.hero.index') }}">Hero section</a></li>
 
+                    <li class="{{ sidebarActive(['admin.why-choose-us.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.why-choose-us.index') }}">Why Choose Us</a></li>
+
                 </ul>
             </li>
 

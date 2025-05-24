@@ -14,7 +14,7 @@
 
 
     <!-- Why Choose Section-->
-    {{-- @include('frontend.pages.layouts.why-choose') --}}
+    @include('frontend.pages.layouts.why-choose')
 
 
     <!-- Find Job Section-->

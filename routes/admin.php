@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Controllers\OrderDetailsController;
 use Illuminate\Support\Facades\Route;
 
@@ -91,6 +92,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Hero Section Routs */
     Route::resource('hero', HeroController::class);
+
+    /** Why Choose Us Section Routs */
+    Route::resource('why-choose-us', WhyChooseUsController::class);
 
     /** order details Routs */
     Route::get('orders', [OrderDetailsController::class, 'orderIndex'])->name('orders.index');

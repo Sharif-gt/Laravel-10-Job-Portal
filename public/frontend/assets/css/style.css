@@ -10103,3 +10103,13 @@ ul.timeline > li:before {
     height: 18px !important;
     width: 40px !important;
 }
+
+.wcu-icon-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wcu-icon{
+    font-size: 30px;
+}
