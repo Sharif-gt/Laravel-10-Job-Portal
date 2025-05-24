@@ -20,7 +20,8 @@ class FrontendController extends Controller
         $popularJobCategory = JobCategory::withCount(['jobs' => function ($query) {
             $query->where(['status' => 'active'])->where('deadline', '>=', date('Y-m-d'));
         }])->where('popular', 1)->get();
+        $featuredJobs = Job::where(['status' => 'active'])->where(['featured' => 1])->where('deadline', '>=', date('Y-m-d'))->take(8)->orderBy('id', 'DESC')->get();
 
-        return view('frontend.pages.index', compact('hero', 'price', 'popularJobCategory', 'totalJobs'));
+        return view('frontend.pages.index', compact('hero', 'price', 'popularJobCategory', 'totalJobs', 'featuredJobs'));
     }
 }

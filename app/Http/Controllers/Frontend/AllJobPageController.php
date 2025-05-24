@@ -64,7 +64,7 @@ class AllJobPageController extends Controller
     {
         $jobs = Job::where('slug', $slug)->firstOrFail();
         $openJob = Job::where('company_id', $jobs?->company?->id)->where(['status' => 'active'])->where('deadline', '>=', date('Y-m-d'))->count();
-        $jobApplied = JobPost::where(['user_id' => auth()->user()->candidateProfile->id, 'job_id' => $jobs->id])->exists();
+        $jobApplied = JobPost::where(['user_id' => auth()->user()?->candidateProfile?->id, 'job_id' => $jobs->id])->exists();
 
         return view('frontend.pages.job-details', compact('jobs', 'openJob', 'jobApplied'));
     }

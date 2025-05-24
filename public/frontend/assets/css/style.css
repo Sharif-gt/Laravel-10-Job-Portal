@@ -1940,6 +1940,11 @@ label {
     font-weight: 600;
 }
 
+.card-grid-2 .btn-apply-now:hover a {
+    /* background: none !important; */
+    color: #f9f9f9;
+}
+
 .card-grid-2:hover {
     border-color: #b4c0e0;
     background-color: #ffffff;

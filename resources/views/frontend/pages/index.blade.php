@@ -10,7 +10,7 @@
 
 
     <!-- Futured Jobs Section-->
-    {{-- @include('frontend.pages.layouts.futured-jobs') --}}
+    @include('frontend.pages.layouts.futured-jobs')
 
 
     <!-- Why Choose Section-->
