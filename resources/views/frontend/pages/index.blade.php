@@ -29,14 +29,6 @@
     @include('frontend.pages.layouts.pricing-plan')
 
 
-    <!-- Jobs Location Section-->
-    {{-- @include('frontend.pages.layouts.jobs-location') --}}
-
-
-    <!-- Reviews Section-->
-    {{-- @include('frontend.pages.layouts.review-section') --}}
-
-
     <!-- Blog Section-->
-    {{-- @include('frontend.pages.layouts.blog-section') --}}
+    @include('frontend.pages.layouts.blog-section')
 @endsection

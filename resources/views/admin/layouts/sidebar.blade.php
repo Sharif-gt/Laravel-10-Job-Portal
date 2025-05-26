@@ -29,7 +29,8 @@
             </li>
 
             <!-- Home Section -->
-            <li class="dropdown {{ sidebarActive(['admin.hero.*']) }}">
+            <li
+                class="dropdown {{ sidebarActive(['admin.hero.*', 'admin.why-choose-us.*', 'admin.learn-more.*', 'admin.about.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Home Section</span></a>
                 <ul class="dropdown-menu">
@@ -41,6 +42,9 @@
 
                     <li class="{{ sidebarActive(['admin.learn-more.*']) }}"><a class="nav-link"
                             href="{{ route('admin.learn-more.index') }}">Learn More</a></li>
+
+                    <li class="{{ sidebarActive(['admin.about.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.about.index') }}">About Us</a></li>
 
                 </ul>
             </li>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Company\CompanyJobController;
 use App\Http\Controllers\Company\CompanyProfileController;
 use App\Http\Controllers\Company\JobAppliedController;
 use App\Http\Controllers\Company\PlanDetailsController;
+use App\Http\Controllers\Frontend\AboutUsController;
 use App\Http\Controllers\Frontend\AllJobPageController;
 use App\Http\Controllers\Frontend\BlogIndexController;
 use App\Http\Controllers\Frontend\CandidatePageController;
@@ -71,6 +72,9 @@ Route::get('/bookmark/{id}', [BookmarkController::class, 'bookmarked'])->name('b
 /* Frontend Blog route */
 Route::get('/all-blogs', [BlogIndexController::class, 'index'])->name('all-blogs');
 Route::get('/blogs/{slug}', [BlogIndexController::class, 'blogDetail'])->name('blog-detail');
+
+/* Frontend About Us route */
+Route::get('/about', [AboutUsController::class, 'index'])->name('about-us');
 
 
 require __DIR__ . '/auth.php';

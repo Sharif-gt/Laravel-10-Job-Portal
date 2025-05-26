@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -99,6 +100,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Learn more Section Routs */
     Route::resource('learn-more', LearnMoreController::class);
+
+    /** About us Section Routs */
+    Route::resource('about', AboutController::class);
 
     /** order details Routs */
     Route::get('orders', [OrderDetailsController::class, 'orderIndex'])->name('orders.index');
