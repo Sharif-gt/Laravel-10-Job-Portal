@@ -22,7 +22,7 @@
 
 
     <!-- Recruiters Section Section-->
-    {{-- @include('frontend.pages.layouts.recruiters-section') --}}
+    @include('frontend.pages.layouts.recruiters-section')
 
 
     <!-- Pricing Plan Section-->
