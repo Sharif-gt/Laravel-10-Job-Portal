@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\BlogIndexController;
 use App\Http\Controllers\Frontend\CandidatePageController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CompanyPageController;
+use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\JobPostController;
 use App\Http\Controllers\Frontend\PricingPageController;
@@ -75,6 +76,10 @@ Route::get('/blogs/{slug}', [BlogIndexController::class, 'blogDetail'])->name('b
 
 /* Frontend About Us route */
 Route::get('/about', [AboutUsController::class, 'index'])->name('about-us');
+
+/* Contact Us route */
+Route::get('/contact', [ContactUsController::class, 'index'])->name('contact');
+Route::post('/contact-us', [ContactUsController::class, 'mail'])->name('contact-us');
 
 
 require __DIR__ . '/auth.php';

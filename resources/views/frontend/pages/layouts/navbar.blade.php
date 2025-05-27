@@ -21,11 +21,7 @@
                             <ul class="sub-menu">
                                 <li><a href="{{ route('about-us') }}">About Us</a></li>
                                 <li><a href="{{ route('pricing') }}">Pricing Plan</a></li>
-                                <li><a href="page-contact.html">Contact Us</a></li>
-                                <li><a href="page-register.html">Register</a></li>
-                                <li><a href="page-signin.html">Signin</a></li>
-                                <li><a href="page-reset-password.html">Reset Password</a></li>
-                                <li><a href="blog-details.html">Blog Single</a></li>
+                                <li><a href="{{ route('contact') }}">Contact Us</a></li>
                             </ul>
                         </li>
                         <li class="has-children"><a class="{{ sidebarActive(['all-blogs', 'blog-detail']) }}"
