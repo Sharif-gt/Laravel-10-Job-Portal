@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CustomPageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\HeroSectionController;
@@ -103,6 +104,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** About us Section Routs */
     Route::resource('about', AboutController::class);
+
+    /** About us Section Routs */
+    Route::resource('custom-page', CustomPageController::class);
 
     /** order details Routs */
     Route::get('orders', [OrderDetailsController::class, 'orderIndex'])->name('orders.index');

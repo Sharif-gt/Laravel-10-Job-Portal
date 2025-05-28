@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\CastomPage;
 use App\Models\Companie;
 use App\Models\Hero;
 use App\Models\Job;
@@ -33,5 +34,12 @@ class FrontendController extends Controller
         $blogs = Blog::where('status', 1)->latest()->take(9)->get();
 
         return view('frontend.pages.index', compact('hero', 'price', 'popularJobCategory', 'totalJobs', 'featuredJobs', 'whyChooseUs', 'learnMore', 'recruiters', 'blogs'));
+    }
+
+    public function customPage($slug)
+    {
+        $page = CastomPage::where('slug', $slug)->firstOrFail();
+
+        return view('frontend.pages.custom-pages', compact('page'));
     }
 }

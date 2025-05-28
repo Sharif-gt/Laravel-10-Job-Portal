@@ -28,6 +28,15 @@
                 </a>
             </li>
 
+            <!-- Custom Page -->
+            <li class="{{ sidebarActive(['admin.custom-page.*']) }}">
+                <a class="nav-link" href="{{ route('admin.custom-page.index') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Custom Page</span>
+                </a>
+            </li>
+
             <!-- Home Section -->
             <li
                 class="dropdown {{ sidebarActive(['admin.hero.*', 'admin.why-choose-us.*', 'admin.learn-more.*', 'admin.about.*']) }}">

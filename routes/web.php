@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Route;
 /* Home Routs */
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
+Route::get('page/{slug}', [FrontendController::class, 'customPage'])->name('custom.page');
 
 /* Company Routs */
 Route::get('/companies', [CompanyPageController::class, 'allCompany'])->name('companies');
