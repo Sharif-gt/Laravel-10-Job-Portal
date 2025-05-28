@@ -28,4 +28,10 @@ class Notify
     {
         notyf()->addError($error, 'Error!');
     }
+
+    // Subscriber send mail
+    static function mailSendNotification()
+    {
+        notyf()->addSuccess('Mail Send Successfully.');
+    }
 }

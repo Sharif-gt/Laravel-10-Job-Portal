@@ -23,6 +23,7 @@ use App\Http\Controllers\Frontend\CompanyPageController;
 use App\Http\Controllers\Frontend\ContactUsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\JobPostController;
+use App\Http\Controllers\Frontend\NewsletterController;
 use App\Http\Controllers\Frontend\PricingPageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -82,6 +83,8 @@ Route::get('/about', [AboutUsController::class, 'index'])->name('about-us');
 Route::get('/contact', [ContactUsController::class, 'index'])->name('contact');
 Route::post('/contact-us', [ContactUsController::class, 'mail'])->name('contact-us');
 
+/* Contact Us route */
+Route::post('/subscrib', [NewsletterController::class, 'subscrib'])->name('subscrib');
 
 require __DIR__ . '/auth.php';
 

@@ -37,6 +37,15 @@
                 </a>
             </li>
 
+            <!-- Custom Page -->
+            <li class="{{ sidebarActive(['admin.subscribers']) }}">
+                <a class="nav-link" href="{{ route('admin.subscribers') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Subscribers</span>
+                </a>
+            </li>
+
             <!-- Home Section -->
             <li
                 class="dropdown {{ sidebarActive(['admin.hero.*', 'admin.why-choose-us.*', 'admin.learn-more.*', 'admin.about.*']) }}">

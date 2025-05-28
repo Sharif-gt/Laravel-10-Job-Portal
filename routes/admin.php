@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
+use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\WhyChooseUsController;
 use App\Http\Controllers\OrderDetailsController;
 use Illuminate\Support\Facades\Route;
@@ -119,6 +120,11 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** Job post Routs */
     Route::post('job-status/{id}', [JobController::class, 'jobStatus'])->name('job-status.update');
     Route::resource('jobs', JobController::class);
+
+    /** subscriber Routs */
+    Route::get('all-subscribers', [SubscriberController::class, 'index'])->name('subscribers');
+    Route::post('send-email', [SubscriberController::class, 'sendMail'])->name('send-mail');
+    Route::delete('all-subscribers/{id}', [SubscriberController::class, 'destroy'])->name('subscribers.destroy');
 
     /** payment setting Routs */
     Route::get('payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');

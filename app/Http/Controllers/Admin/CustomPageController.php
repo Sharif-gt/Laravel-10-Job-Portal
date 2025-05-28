@@ -17,7 +17,7 @@ class CustomPageController extends Controller
     public function index()
     {
         $query = CastomPage::query();
-        $this->search($query, ['name']);
+        $this->search($query, ['page_name']);
         $allPages = $query->paginate(20);
 
         return view('admin.custom-page.index', compact('allPages'));
