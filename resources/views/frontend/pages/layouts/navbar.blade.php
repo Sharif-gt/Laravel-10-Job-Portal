@@ -7,25 +7,25 @@
             </div>
             <div class="header-nav">
                 <nav class="nav-main-menu">
+                    @php
+                        $public_menu = Menu::getByName('Navigation Menu ');
+                    @endphp
                     <ul class="main-menu">
-                        <li class="has-children"><a class="{{ sidebarActive(['home']) }}"
-                                href="{{ route('home') }}">Home</a>
-                        </li>
-                        <li class="has-children"><a class="{{ sidebarActive(['all.jobs']) }}"
-                                href="{{ route('all.jobs') }}">Find a Job</a></li>
-                        <li class="has-children"><a class="{{ sidebarActive(['companies', 'companies.page']) }}"
-                                href="{{ route('companies') }}">Recruiters</a></li>
-                        <li class="has-children"><a class="{{ sidebarActive(['candidates', 'candidates.page']) }}"
-                                href="{{ route('candidates') }}">Candidates</a></li>
-                        <li class="has-children"><a href="blog-grid.html">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="{{ route('about-us') }}">About Us</a></li>
-                                <li><a href="{{ route('pricing') }}">Pricing Plan</a></li>
-                                <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-children"><a class="{{ sidebarActive(['all-blogs', 'blog-detail']) }}"
-                                href="{{ route('all-blogs') }}">Blog</a></li>
+                        @foreach ($public_menu as $menu)
+                            @if ($menu['child'])
+                                <li class="has-children"><a href="#">{{ $menu['label'] }}</a>
+                                    <ul class="sub-menu">
+                                        @foreach ($menu['child'] as $childMenu)
+                                            <li><a href="{{ $childMenu['link'] }}">{{ $childMenu['label'] }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @else
+                                <li class="has-children"><a class=""
+                                        href="{{ $menu['link'] }}">{{ $menu['label'] }}</a>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </nav>
                 <div class="burger-icon burger-icon-white"><span class="burger-icon-top"></span><span

@@ -28,6 +28,15 @@
                 </a>
             </li>
 
+            <!-- Menu builder -->
+            <li class="{{ sidebarActive(['admin.menu-builder.*']) }}">
+                <a class="nav-link" href="{{ route('admin.menu-builder') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Menu Builder</span>
+                </a>
+            </li>
+
             <!-- Custom Page -->
             <li class="{{ sidebarActive(['admin.custom-page.*']) }}">
                 <a class="nav-link" href="{{ route('admin.custom-page.index') }}">

@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\LearnMoreController;
 use App\Http\Controllers\Admin\LocationAjaxController;
+use App\Http\Controllers\Admin\MenuBulderController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PriceController;
@@ -134,6 +135,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** site setting Routs */
     Route::get('site-settings', [SiteSettingController::class, 'index'])->name('site-settings.index');
     Route::post('site-settings/store', [SiteSettingController::class, 'store'])->name('site-settings.store');
+
+    /** Menu Builder Routs */
+    Route::get('menu-builder', [MenuBulderController::class, 'index'])->name('menu-builder');
 
     /** Hero Section Routs */
     // Route::get('hero-section', [HeroSectionController::class, 'index'])->name('hero-section.index');
