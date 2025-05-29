@@ -14,6 +14,6 @@ class UserPlan extends Model
 
     function price(): BelongsTo
     {
-        return $this->belongsTo(Price::class);
+        return $this->belongsTo(Price::class, 'price_id', 'id');
     }
 }

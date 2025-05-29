@@ -31,23 +31,54 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-info-subtle">
-                                        <h2>12 <span>job applied</span></h2>
+                                        <h2>{{ $totalJobPost }} <span>Total Job Post</span></h2>
                                         <span class="icon"><i class="fas fa-briefcase"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-danger-subtle">
-                                        <h2>12 <span>job applied</span></h2>
+                                        <h2>{{ $pendingJobs }} <span>Pending Jobs</span></h2>
                                         <span class="icon"><i class="fas fa-briefcase"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-warning-subtle">
-                                        <h2>12 <span>job applied</span></h2>
+                                        <h2>{{ $totalPackegeBuy }} <span>Total packeg buy</span></h2>
                                         <span class="icon"><i class="fas fa-briefcase"></i></span>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row mt-60">
+                                <div class="card">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Current Package</td>
+                                                <td>{{ $planDetails?->price?->lable }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Job Post Available</td>
+                                                <td>{{ $planDetails?->job_limit }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Featured Post Available</td>
+                                                <td>{{ $planDetails?->featured_job_limit }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>Highlight Post Available</td>
+                                                <td>{{ $planDetails?->highlight_job_limit }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
                             @if (!companyProfileCompletion())
                                 <div class="row">
                                     <div class="col-12 mt-30">
