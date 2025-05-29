@@ -12,7 +12,11 @@ class CandidateDashboardController extends Controller
 {
     public function index(): View
     {
-        return view('frontend.candidate-dashboard.dashboard');
+        $totalAppliedJobs = JobPost::where('user_id', auth()->user()->candidateProfile->id)->count();
+        $totalBookmarkedJobs = Bookmark::where('user_id', auth()->user()->candidateProfile->id)->count();
+        $letestAppliedJob = JobPost::with('job')->where('user_id', auth()->user()->candidateProfile->id)->orderBy('id', 'DESC')->take(10)->get();
+
+        return view('frontend.candidate-dashboard.dashboard', compact('totalAppliedJobs', 'totalBookmarkedJobs', 'letestAppliedJob'));
     }
 
     public function appliedJob()

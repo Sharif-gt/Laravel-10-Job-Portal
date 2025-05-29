@@ -30,19 +30,13 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-info-subtle">
-                                        <h2>12 <span>job applied</span></h2>
+                                        <h2>{{ $totalAppliedJobs }} <span>job apply</span></h2>
                                         <span class="icon"><i class="fas fa-briefcase"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <div class="dash_overview_item bg-danger-subtle">
-                                        <h2>12 <span>job applied</span></h2>
-                                        <span class="icon"><i class="fas fa-briefcase"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="dash_overview_item bg-warning-subtle">
-                                        <h2>12 <span>job applied</span></h2>
+                                        <h2>{{ $totalBookmarkedJobs }} <span>job bookmarked</span></h2>
                                         <span class="icon"><i class="fas fa-briefcase"></i></span>
                                     </div>
                                 </div>
@@ -65,6 +59,46 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+
+                    <div class="content-single">
+                        <h3 class="mt-60 mb-0 color-brand-1">Recent Applied Job </h3>
+                        <table class="table table-striped mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Title</th>
+                                    <th>Applied Date</th>
+                                    <th>Job Status</th>
+                                    <th style="width: 20%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="experience-tbody">
+                                @forelse ($letestAppliedJob as $item)
+                                    <tr>
+                                        <td>{{ $item?->job?->company?->name }}</td>
+                                        <td>{{ $item?->job?->title }}</td>
+                                        <td>{{ formatDate($item?->created_at) }}</td>
+                                        <td>
+                                            @if ($item?->job?->deadline > date('Y-m-d'))
+                                                <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-denger">Expire</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('all.jobs.detail', $item?->job?->slug) }}"
+                                                class="btn btn-primary editExperience"><i class="fas fa-edit"
+                                                    aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">No Result Found</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
