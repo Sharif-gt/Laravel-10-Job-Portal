@@ -74,3 +74,15 @@ if (!function_exists('storeUserPlan')) {
         ]);
     }
 }
+
+if (!function_exists('calculateEarning')) {
+    function calculateEarning($amount)
+    {
+        $total = 0;
+        foreach ($amount as $value) {
+            $amount = intval(preg_replace('/[^0-9]/', '', $value));
+            $total += $amount;
+        }
+        return $total;
+    }
+}
