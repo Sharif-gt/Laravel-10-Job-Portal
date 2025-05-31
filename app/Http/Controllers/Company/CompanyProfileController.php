@@ -37,8 +37,8 @@ class CompanyProfileController extends Controller
 
     public function updateCompanyInfo(CompanyInfoUpdateRequest $request): RedirectResponse
     {
-        $logoPath = $this->uploadFile($request, 'logo', '/upload/company-profile');
-        $bannerPath = $this->uploadFile($request, 'banner', '/upload/company-profile');
+        $logoPath = $this->uploadFile($request, 'logo', '/upload');
+        $bannerPath = $this->uploadFile($request, 'banner', '/upload');
 
         $data = [];
         if (!empty($logoPath)) {

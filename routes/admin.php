@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\ClearDatabaseController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\CustomPageController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -138,6 +139,10 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Menu Builder Routs */
     Route::get('menu-builder', [MenuBulderController::class, 'index'])->name('menu-builder');
+
+    /** Clear Database Routs */
+    Route::get('clear', [ClearDatabaseController::class, 'index'])->name('clear');
+    Route::post('clear-database', [ClearDatabaseController::class, 'clearDatabase'])->name('clear-database');
 
     /** Hero Section Routs */
     // Route::get('hero-section', [HeroSectionController::class, 'index'])->name('hero-section.index');

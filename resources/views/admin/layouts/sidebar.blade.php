@@ -166,6 +166,15 @@
                 </a>
             </li>
 
+            <!-- Clear Database -->
+            <li class="{{ sidebarActive(['admin.clear']) }}">
+                <a class="nav-link" href="{{ route('admin.clear') }}">
+                    {{-- <i class="far fa-square"></i> --}}
+                    <i class="fas fa-home"></i>
+                    <span>Clear Database</span>
+                </a>
+            </li>
+
             {{-- <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Layout</span></a>

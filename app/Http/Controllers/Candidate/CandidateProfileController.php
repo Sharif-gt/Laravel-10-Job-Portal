@@ -47,8 +47,8 @@ class CandidateProfileController extends Controller
     public function store(CandidateBesicInfoRequest $request): RedirectResponse
     {
 
-        $image = $this->uploadFile($request, 'image', '/upload/candidate-profile');
-        $cv = $this->uploadFile($request, 'cv', '/upload/candidate-cv');
+        $image = $this->uploadFile($request, 'image', '/upload');
+        $cv = $this->uploadFile($request, 'cv', '/upload');
 
         $uploadData = [];
 

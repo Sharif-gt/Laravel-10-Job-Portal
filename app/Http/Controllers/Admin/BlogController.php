@@ -42,7 +42,7 @@ class BlogController extends Controller
     public function store(AdminBlogRequest $request)
     {
         $authorId = auth()->guard('admin')->id();
-        $image = $this->uploadFile($request, 'image', '/upload/blog-image');
+        $image = $this->uploadFile($request, 'image', '/upload');
 
         $saveBlog = new Blog;
         $saveBlog->author_id = $authorId;
@@ -76,7 +76,7 @@ class BlogController extends Controller
     {
 
         $authorId = auth()->guard('admin')->id();
-        $image = $this->uploadFile($request, 'image', '/upload/blog-image');
+        $image = $this->uploadFile($request, 'image', '/upload');
 
         $updateBlog = Blog::findOrFail($id);
         $updateBlog->author_id = $authorId;
