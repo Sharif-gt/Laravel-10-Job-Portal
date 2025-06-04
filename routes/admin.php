@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\AccessManagementController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -118,6 +119,9 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** Job category Routs */
     Route::resource('job-category', JobCategoryController::class);
+
+    /** access management Routs */
+    Route::resource('role', AccessManagementController::class);
 
     /** Job post Routs */
     Route::post('job-status/{id}', [JobController::class, 'jobStatus'])->name('job-status.update');
