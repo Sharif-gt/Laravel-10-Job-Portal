@@ -39,16 +39,20 @@
                                     @forelse ($roles as $role)
                                         <tr>
                                             <td>{{ $role?->name }}</td>
-                                            <td>
+                                            <td style="width: 65%">
                                                 @foreach ($role->permissions as $item)
-                                                    <span class="badge bg-primary text-light"> {{ $item->name }} </span>
+                                                    <span class="badge bg-primary text-light m-1"> {{ $item->name }}
+                                                    </span>
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.role.edit', $role->id) }}"
-                                                    class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('admin.role.destroy', $role->id) }}"
-                                                    class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a>
+                                                @if ($role->name !== 'Super Admin')
+                                                    <a href="{{ route('admin.role.edit', $role->id) }}"
+                                                        class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('admin.role.destroy', $role->id) }}"
+                                                        class="btn btn-danger delete-item"><i
+                                                            class="fas fa-trash-alt"></i></a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @empty
