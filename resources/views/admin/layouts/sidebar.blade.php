@@ -117,10 +117,13 @@
 
             <!-- access management -->
 
-            <li class="dropdown {{ sidebarActive(['admin.role.*']) }}">
+            <li class="dropdown {{ sidebarActive(['admin.role.*', 'admin.user-role.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>Access Management</span></a>
                 <ul class="dropdown-menu">
+                    <li class="{{ sidebarActive(['admin.user-role.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.user-role.index') }}">Create User</a></li>
+
                     <li class="{{ sidebarActive(['admin.role.*']) }}"><a class="nav-link"
                             href="{{ route('admin.role.index') }}">Roles</a></li>
                 </ul>

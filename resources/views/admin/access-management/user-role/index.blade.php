@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Roles</h1>
+            <h1>User Roles</h1>
         </div>
 
         <div class="section-body">
@@ -11,9 +11,9 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Roles</h4>
+                            <h4>All User Roles</h4>
                             <div class="card-header-form">
-                                <form action="{{ route('admin.role.index') }}" method="GET">
+                                <form action="{{ route('admin.user-role.index') }}" method="GET">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="search" placeholder="search"
                                             value="{{ request('search') }}">
@@ -24,31 +24,28 @@
                                     </div>
                                 </form>
                             </div>
-                            <a href="{{ route('admin.role.create') }}" class="btn btn-icon icon-left btn-success"><i
-                                    class="far fa-edit"></i> Create Roles</a>
+                            <a href="{{ route('admin.user-role.create') }}" class="btn btn-icon icon-left btn-success"><i
+                                    class="far fa-edit"></i> Create User Role</a>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
                                         <th>Role</th>
-                                        <th>Purmissions</th>
                                         <th>Action</th>
                                     </tr>
-                                    @forelse ($roles as $role)
+                                    @forelse ($roleUser as $user)
                                         <tr>
-                                            <td>{{ $role?->name }}</td>
-                                            <td style="width: 65%">
-                                                @foreach ($role->permissions as $item)
-                                                    <span class="badge bg-primary text-light m-1"> {{ $item->name }}
-                                                    </span>
-                                                @endforeach
-                                            </td>
+                                            <td>{{ $user?->name }}</td>
+                                            <td> {{ $user?->email }} </td>
+                                            <td> {{ $user?->getRoleNames()->first() }} </td>
                                             <td>
-                                                @if ($role->name !== 'Super Admin')
-                                                    <a href="{{ route('admin.role.edit', $role->id) }}"
+                                                @if ($user->getRoleNames()->first() !== 'Super Admin')
+                                                    <a href="{{ route('admin.user-role.edit', $user->id) }}"
                                                         class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                    <a href="{{ route('admin.role.destroy', $role->id) }}"
+                                                    <a href="{{ route('admin.user-role.destroy', $user->id) }}"
                                                         class="btn btn-danger delete-item"><i
                                                             class="fas fa-trash-alt"></i></a>
                                                 @endif
@@ -62,9 +59,9 @@
                         </div>
                         <div class="card-footer text-right">
                             <nav class="d-inline-block">
-                                @if ($roles->hasPages())
+                                {{-- @if ($roles->hasPages())
                                     {{ $roles->withQueryString()->links() }}
-                                @endif
+                                @endif --}}
                             </nav>
                         </div>
                     </div>

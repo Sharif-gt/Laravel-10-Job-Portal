@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\OrganizationTypeController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PriceController;
 use App\Http\Controllers\Admin\ProfessionController;
+use App\Http\Controllers\Admin\RolePermissionController;
 use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\StateController;
@@ -122,6 +123,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
 
     /** access management Routs */
     Route::resource('role', AccessManagementController::class);
+    Route::resource('user-role', RolePermissionController::class);
 
     /** Job post Routs */
     Route::post('job-status/{id}', [JobController::class, 'jobStatus'])->name('job-status.update');
