@@ -15,6 +15,13 @@ class JobCategoryController extends Controller
 {
     use Searchable;
 
+    function __construct()
+    {
+        $this->middleware(['permission:job category create update|job category delete'])->only(['index']);
+        $this->middleware(['permission:job category create update'])->only(['create', 'store', 'edit', 'update']);
+        $this->middleware(['permission:job category delete'])->only(['destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */

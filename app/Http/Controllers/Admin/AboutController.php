@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 class AboutController extends Controller
 {
     use FileImageUploadTrait;
+
+    function __construct()
+    {
+        $this->middleware(['permission:sections']);
+    }
+
     /**
      * Display a listing of the resource.
      */

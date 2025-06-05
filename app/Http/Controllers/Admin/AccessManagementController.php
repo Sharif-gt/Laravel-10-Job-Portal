@@ -12,6 +12,12 @@ use Spatie\Permission\Models\Role;
 class AccessManagementController extends Controller
 {
     use Searchable;
+
+    function __construct()
+    {
+        $this->middleware(['permission:access management']);
+    }
+
     /**
      * Display a listing of the resource.
      */

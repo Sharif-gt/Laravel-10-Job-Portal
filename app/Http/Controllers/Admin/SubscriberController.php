@@ -14,6 +14,11 @@ class SubscriberController extends Controller
 {
     use Searchable;
 
+    function __construct()
+    {
+        $this->middleware(['permission:news letter']);
+    }
+
     public function index()
     {
         $query = Subscriber::query();

@@ -16,6 +16,12 @@ use PhpParser\Node\Stmt\TryCatch;
 class BlogController extends Controller
 {
     use FileImageUploadTrait, Searchable;
+
+    function __construct()
+    {
+        $this->middleware(['permission:blogs']);
+    }
+
     /**
      * Display a listing of the resource.
      */

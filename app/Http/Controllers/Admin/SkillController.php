@@ -15,6 +15,12 @@ use PhpParser\Node\Stmt\Return_;
 class SkillController extends Controller
 {
     use Searchable;
+
+    function __construct()
+    {
+        $this->middleware(['permission:dashboard']);
+    }
+
     /**
      * Display a listing of the resource.
      */

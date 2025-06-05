@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class MenuBulderController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['permission:menu builder']);
+    }
+
     public function index()
     {
         return view('admin.menu-bulder.index');

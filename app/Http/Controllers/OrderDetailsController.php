@@ -15,6 +15,11 @@ class OrderDetailsController extends Controller
 {
     use Searchable;
 
+    function __construct()
+    {
+        $this->middleware(['permission:order index']);
+    }
+
     function orderIndex(): View
     {
         $data = Order::query();

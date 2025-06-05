@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class WhyChooseUsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['permission:sections']);
+    }
+
     /**
      * Display a listing of the resource.
      */
