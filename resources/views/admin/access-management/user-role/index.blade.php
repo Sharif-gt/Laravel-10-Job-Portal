@@ -57,13 +57,6 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="card-footer text-right">
-                            <nav class="d-inline-block">
-                                {{-- @if ($roles->hasPages())
-                                    {{ $roles->withQueryString()->links() }}
-                                @endif --}}
-                            </nav>
-                        </div>
                     </div>
                 </div>
             </div>

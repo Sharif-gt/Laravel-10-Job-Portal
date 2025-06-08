@@ -15,17 +15,9 @@ class CandidateExperienceController extends Controller
      */
     public function index()
     {
-        $candidateExperience = CandidateExperience::where('candidate_id', auth()->user()->candidateProfile->id)->orderBy('id', 'DESC')->get();
+        $candidateExperience = CandidateExperience::where('candidate_id', auth()->user()->candidateProfile?->id)->orderBy('id', 'DESC')->get();
 
         return view('frontend.candidate-dashboard.ajax-experience-table', compact('candidateExperience'))->render();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -34,7 +26,7 @@ class CandidateExperienceController extends Controller
     public function store(CandidateExperienceStoreRequest $request): Response
     {
         $experience = new CandidateExperience();
-        $experience->candidate_id = auth()->user()->candidateProfile->id;
+        $experience->candidate_id = auth()->user()->candidateProfile?->id;
         $experience->company = $request->company;
         $experience->department = $request->department;
         $experience->designation = $request->designation;
@@ -45,14 +37,6 @@ class CandidateExperienceController extends Controller
         $experience->save();
 
         return response(['message' => 'Created Successfully.'], 200);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -71,7 +55,7 @@ class CandidateExperienceController extends Controller
     public function update(CandidateExperienceStoreRequest $request, string $id): Response
     {
         $experience = CandidateExperience::findOrFail($id);
-        if (auth()->user()->candidateProfile->id !== $experience->candidate_id) {
+        if (auth()->user()->candidateProfile?->id !== $experience->candidate_id) {
             abort(404);
         }
         $experience->company = $request->company;
@@ -93,7 +77,7 @@ class CandidateExperienceController extends Controller
     {
         try {
             $candidateExperience = CandidateExperience::findOrFail($id);
-            if (auth()->user()->candidateProfile->id !== $candidateExperience->candidate_id) {
+            if (auth()->user()->candidateProfile?->id !== $candidateExperience->candidate_id) {
                 abort(404);
             }
             $candidateExperience->delete();

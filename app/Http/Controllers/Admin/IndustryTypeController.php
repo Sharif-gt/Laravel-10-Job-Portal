@@ -28,7 +28,7 @@ class IndustryTypeController extends Controller
 
         $this->search($query, ['name']);
 
-        $data = $query->paginate(20);
+        $data = $query->paginate(15);
         return view('admin.industry.index', compact('data'));
     }
 
@@ -48,10 +48,6 @@ class IndustryTypeController extends Controller
         $request->validate([
             'name' => ['required', 'max:255', 'unique:industries,name']
         ]);
-
-        // $type = new Industry();
-        // $type->name = $request->name;
-        // $type->save();
 
         Industry::create([
             'name' => $request->name

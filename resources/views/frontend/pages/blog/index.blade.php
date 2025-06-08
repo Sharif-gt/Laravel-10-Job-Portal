@@ -27,7 +27,8 @@
                                     <div class="card-grid-3 hover-up">
                                         <div class="text-center card-grid-3-image"><a
                                                 href="{{ route('blog-detail', $item?->slug) }}">
-                                                <figure><img alt="joblist" src="{{ asset($item?->image) }}">
+                                                <figure><img style="height: 220px; object-fit: cover;" alt="joblist"
+                                                        src="{{ asset($item?->image) }}">
                                                 </figure>
                                             </a></div>
                                         <div class="card-block-info">
@@ -55,7 +56,7 @@
                                     </div>
                                 </div>
                             @empty
-                                <span class="text-center">No Blog Found</span>
+                                <span class="text-center mt-60">No Blog Found</span>
                             @endforelse
 
                         </div>
@@ -82,7 +83,8 @@
                             @forelse ($feturedBlog as $item)
                                 <div class="post-list-small">
                                     <div class="post-list-small-item d-flex align-items-center">
-                                        <figure class="thumb mr-15"><img src="{{ asset($item?->image) }}" alt="joblist">
+                                        <figure class="thumb mr-15"><img style="height: 50px; object-fit: cover;"
+                                                src="{{ asset($item?->image) }}" alt="joblist">
                                         </figure>
                                         <div class="content">
                                             <h5><a href="{{ route('blog-detail', $item?->slug) }}">{{ $item?->title }}</a>
@@ -105,7 +107,8 @@
                             <div class="post-list-small">
                                 <ul class="gallery-3">
                                     @forelse ($blogImage as $img)
-                                        <li><a href="#"><img src="{{ asset($img?->image) }}"></a></li>
+                                        <li><a href="#"><img style="height: 60px; object-fit: cover;"
+                                                    src="{{ asset($img?->image) }}"></a></li>
                                     @empty
                                         <span class="text-center">No Image</span>
                                     @endforelse

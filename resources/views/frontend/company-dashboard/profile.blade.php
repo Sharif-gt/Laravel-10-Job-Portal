@@ -147,7 +147,7 @@
                                             <select class="form-control form-icons select-active" name="industry_type_id">
                                                 <option value="">Select</option>
                                                 @foreach ($Industrys as $Industry)
-                                                    <option @selected($Industry->id === $companieInfo->industry_type_id) value="{{ $Industry?->id }}">
+                                                    <option @selected($Industry->id === $companieInfo?->industry_type_id) value="{{ $Industry?->id }}">
                                                         {{ $Industry?->name }}</option>
                                                 @endforeach
                                             </select>
@@ -165,7 +165,7 @@
                                                 name="organization_type_id">
                                                 <option value="">Select</option>
                                                 @foreach ($organizations as $organization)
-                                                    <option @selected($organization->id === $companieInfo->organization_type_id) value="{{ $organization?->id }}">
+                                                    <option @selected($organization->id === $companieInfo?->organization_type_id) value="{{ $organization?->id }}">
                                                         {{ $organization?->name }}
                                                     </option>
                                                 @endforeach
@@ -183,7 +183,7 @@
                                             <select class="form-control form-icons select-active" name="team_size_id">
                                                 <option value="">Select</option>
                                                 @foreach ($teamSize as $team)
-                                                    <option @selected($team->id === $companieInfo->team_size_id) value="{{ $team?->id }}">
+                                                    <option @selected($team->id === $companieInfo?->team_size_id) value="{{ $team?->id }}">
                                                         {{ $team?->name }}</option>
                                                 @endforeach
                                             </select>
@@ -249,7 +249,7 @@
                                             <select class="form-control country form-icons select-active" name="country">
                                                 <option value="">Select</option>
                                                 @foreach ($countries as $country)
-                                                    <option @selected($country->id === $companieInfo->country) value="{{ $country?->id }}">
+                                                    <option @selected($country->id === $companieInfo?->country) value="{{ $country?->id }}">
                                                         {{ $country?->name }}</option>
                                                 @endforeach
                                             </select>
@@ -266,7 +266,7 @@
                                             <select class="form-control state form-icons select-active" name="state">
                                                 <option value="">Select</option>
                                                 @foreach ($states as $state)
-                                                    <option @selected($state->id === $companieInfo->state) value="{{ $state->id }}">
+                                                    <option @selected($state->id === $companieInfo?->state) value="{{ $state->id }}">
                                                         {{ $state->name }}</option>
                                                 @endforeach
                                             </select>
@@ -283,7 +283,7 @@
                                             <select class="form-control city form-icons select-active" name="city">
                                                 <option value="">Select</option>
                                                 @foreach ($cities as $city)
-                                                    <option @selected($city->id === $companieInfo->city) value="{{ $city->id }}">
+                                                    <option @selected($city->id === $companieInfo?->city) value="{{ $city->id }}">
                                                         {{ $city->name }}</option>
                                                 @endforeach
                                             </select>

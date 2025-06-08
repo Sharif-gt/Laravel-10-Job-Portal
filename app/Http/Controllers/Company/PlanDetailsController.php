@@ -30,9 +30,9 @@ class PlanDetailsController extends Controller
     {
         $order = Order::findOrFail($id);
         $customer = new Buyer([
-            'name'          => $order?->company->name,
+            'name'          => $order?->company?->name,
             'custom_fields' => [
-                'email' => $order?->company->email,
+                'email' => $order?->company?->email,
                 'transaction' => $order?->transaction_id,
                 'payment method' => $order?->payment_provider,
             ],

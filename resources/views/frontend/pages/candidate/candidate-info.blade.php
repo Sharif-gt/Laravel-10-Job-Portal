@@ -30,15 +30,6 @@
                         </h5>
                         <p class="mt-0 font-md color-text-paragraph-2 mb-15">{{ $candidateInfo?->profession->name }} |
                             {{ $candidateInfo?->title }}</p>
-                        {{-- <div class="mt-0 mb-15 d-flex flex-wrap align-items-center">
-                            <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                            <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                            <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                            <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                            <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                            <span class="font-xs color-text-mutted ml-10">(66)</span>
-                            <img class="ml-30" src="assets/imgs/page/candidates/verified.png" alt="joblist">
-                        </div> --}}
                     </div>
                     <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-download-icon btn-apply btn-apply-big"
                             href="page-contact.html">Download CV</a></div>
@@ -58,68 +49,6 @@
                                 aria-labelledby="tab-short-bio">
                                 <h4>About Me</h4>
                                 <p>{!! $candidateInfo?->bio !!}</p>
-                                <h4>Professional Skills</h4>
-                                {{-- <div class="row mb-40">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-30">
-                                        <h6 class="color-text-paragraph-2">Programming</h6>
-                                        <div class="box-progress-bar mt-20">
-                                            <p class="font-xs color-text-paragraph-2 mb-10">HTML &amp; CSS</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-paragraph-2" role="progressbar"
-                                                    style="width: 78%" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100"><span>78%</span></div>
-                                            </div>
-                                            <p class="font-xs color-text-paragraph-2 mb-10 mt-30">Javascript</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-brand-2" role="progressbar" style="width: 88%"
-                                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                                                    <span>88%</span>
-                                                </div>
-                                            </div>
-                                            <p class="font-xs color-text-paragraph-2 mb-10 mt-30">Database</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-paragraph-2" role="progressbar"
-                                                    style="width: 62%" aria-valuenow="75" aria-valuemin="0"
-                                                    aria-valuemax="100"><span>62%</span></div>
-                                            </div>
-                                            <p class="font-xs color-text-paragraph-2 mb-10 mt-30">React JS</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-paragraph-2" role="progressbar"
-                                                    style="width: 92%" aria-valuenow="100" aria-valuemin="0"
-                                                    aria-valuemax="100"><span>92%</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-30">
-                                        <h6 class="color-text-paragraph-2">Design</h6>
-                                        <div class="box-progress-bar mt-20">
-                                            <p class="font-xs color-text-paragraph-2 mb-10">Photoshop</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-paragraph-2" role="progressbar"
-                                                    style="width: 29%" aria-valuenow="25" aria-valuemin="0"
-                                                    aria-valuemax="100"><span>29%</span></div>
-                                            </div>
-                                            <p class="font-xs color-text-paragraph-2 mb-10 mt-30">Figma</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-paragraph-2" role="progressbar"
-                                                    style="width: 20%" aria-valuenow="50" aria-valuemin="0"
-                                                    aria-valuemax="100"><span>20%</span></div>
-                                            </div>
-                                            <p class="font-xs color-text-paragraph-2 mb-10 mt-30">Illustrator</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-paragraph-2" role="progressbar"
-                                                    style="width: 65%" aria-valuenow="75" aria-valuemin="0"
-                                                    aria-valuemax="100"><span>65%</span></div>
-                                            </div>
-                                            <p class="font-xs color-text-paragraph-2 mb-10 mt-30">Sketch</p>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-paragraph-2" role="progressbar"
-                                                    style="width: 82%" aria-valuenow="100" aria-valuemin="0"
-                                                    aria-valuemax="100"><span>82%</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -219,7 +148,6 @@
                                     {{ $candidateInfo?->candidateCountry->name ? ', ' . $candidateInfo?->candidateCountry->name : '' }}
                                 </li>
                                 <li>Phone: {{ $candidateInfo?->phone_one }}</li>
-                                {{-- <li>Email: {{ auth()->user()->email }}</li> --}}
                             </ul>
                             <div class="mt-30"><a class="btn btn-send-message" href="">Send Message</a>
                             </div>

@@ -30,7 +30,7 @@ class CityController extends Controller
         $data = City::query();
         $data->with(['country', 'state']);
         $this->search($data, ['name']);
-        $cities = $data->orderBy('id', 'DESC')->paginate(20);
+        $cities = $data->orderBy('id', 'DESC')->paginate(25);
 
         return view('admin.location.city.index', compact('cities'));
     }

@@ -99,11 +99,6 @@
                                                         </li>
                                                     </ul>
                                                 </div>
-
-                                                {{-- <a href="{{ route('company.jobs-post.edit', $post->id) }}"
-                                                    class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('company.jobs-post.destroy', $post->id) }}"
-                                                    class="btn btn-danger delete-item"><i class="fas fa-trash-alt"></i></a> --}}
                                             </td>
                                         </tr>
                                     @empty

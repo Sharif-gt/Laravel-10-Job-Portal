@@ -19,6 +19,5 @@
                 </li>
             </form>
         </ul>
-        {{-- <div class="mt-20"><a class="link-red" href="#">Delete Account</a></div> --}}
     </div>
 </div>

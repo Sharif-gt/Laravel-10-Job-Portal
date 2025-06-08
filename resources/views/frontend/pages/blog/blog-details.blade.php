@@ -60,12 +60,6 @@
                                             class="mr-5 d-inline-block d-middle" data-social="reddit" href="#"><img
                                                 alt="joblist"
                                                 src="{{ asset('frontend/assets/imgs/template/icons/share-red.svg') }}"></a>
-                                        {{-- <a class="mr-20 d-inline-block d-middle hover-up" href="#"><img alt="joblist"
-                                                src="assets/imgs/page/blog/fb.svg"></a><a
-                                            class="mr-20 d-inline-block d-middle hover-up" href="#"><img
-                                                alt="joblist" src="assets/imgs/page/blog/tw.svg"></a><a
-                                            class="mr-0 d-inline-block d-middle hover-up" href="#"><img alt="joblist"
-                                                src="assets/imgs/page/blog/pi.svg"></a> --}}
                                     </div>
                                 </div>
                             </div>

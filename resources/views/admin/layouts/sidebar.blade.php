@@ -16,7 +16,7 @@
                 <li class="{{ sidebarActive(['admin.industry-type.index']) }}">
                     <a class="nav-link" href="{{ route('admin.industry-type.index') }}">
                         <i class="fas fa-industry"></i>
-                        <span>Industru Type</span>
+                        <span>Industry Type</span>
                     </a>
                 </li>
                 <!-- Organization Type -->
@@ -95,7 +95,7 @@
                         <li class="{{ sidebarActive(['admin.languages.*']) }}"><a class="nav-link"
                                 href="{{ route('admin.languages.index') }}">Languages</a></li>
                         <li class="{{ sidebarActive(['admin.professions.*']) }}"><a class="nav-link"
-                                href="{{ route('admin.professions.index') }}">Profession</a></li>
+                                href="{{ route('admin.professions.index') }}">Professions</a></li>
                         <li class="{{ sidebarActive(['admin.skills.*']) }}"><a class="nav-link"
                                 href="{{ route('admin.skills.index') }}">Skills</a></li>
                     </ul>
@@ -226,4 +226,5 @@
             @endif
         </ul>
     </aside>
+    <div style="width: 30px"></div>
 </div>

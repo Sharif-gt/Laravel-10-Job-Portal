@@ -37,7 +37,7 @@ class CompanyJobController extends Controller
         $query = Job::query();
         $query->withCount('appliedJob');
         $this->search($query, ['title', 'salary_mode']);
-        $allPost = $query->where('company_id', auth()->user()->company->id)->orderBy('id', 'DESC')->paginate(20);
+        $allPost = $query->where('company_id', auth()->user()->company?->id)->orderBy('id', 'DESC')->paginate(20);
 
         return view('frontend.company-dashboard.jobs.index', compact('allPost'));
     }
@@ -108,7 +108,7 @@ class CompanyJobController extends Controller
         $storeData->save();
 
         if ($storeData) {
-            $userPlan = auth()->user()->company->userPlan;
+            $userPlan = auth()->user()->company?->userPlan;
             $userPlan->job_limit = $userPlan->job_limit - 1;
 
             if ($storeData->featured == 1) {

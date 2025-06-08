@@ -27,18 +27,12 @@
                                 class="card-location font-regular ml-20">{{ $company?->companyCity->name }},
                                 {{ $company?->companyCountry->name }}</span></h5>
                     </div>
-                    {{-- <div class="col-lg-4 col-md-12 text-lg-end"><a class="btn btn-call-icon btn-apply btn-apply-big"
-                            href="page-contact.html">Contact us</a></div> --}}
                 </div>
             </div>
             <div class="box-nav-tabs mt-40 mb-5">
                 <ul class="nav" role="tablist">
                     <li><a class="btn btn-border  recruitment-icon mr-15 mb-5 active" href="#tab-about" data-bs-toggle="tab"
                             role="tab" aria-controls="tab-about" aria-selected="true">About us</a></li>
-                    {{-- <li><a class="btn btn-border recruitment-icon mr-15 mb-5" href="#tab-recruitments" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-recruitments" aria-selected="false">Recruitments</a></li>
-                    <li><a class="btn btn-border  recruitment-icon mb-5" href="#tab-people" data-bs-toggle="tab"
-                            role="tab" aria-controls="tab-people" aria-selected="false">People</a></li> --}}
                 </ul>
             </div>
             <div class="border-bottom pt-10 pb-10"></div>
@@ -125,7 +119,6 @@
                                                     <div class="col-lg-5 col-5 text-end">
                                                         <div class="btn">
                                                             <i class="far fa-bookmark"></i>
-                                                            {{-- <i class="fas fa-bookmark"></i> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -192,11 +185,6 @@
                                             class="small-heading">{{ formatDate($company?->establishment_date) }}</strong>
                                     </div>
                                 </li>
-                                {{-- <li>
-                                    <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
-                                    <div class="sidebar-text-info"><span class="text-description">Last Jobs
-                                            Posted</span><strong class="small-heading">4 days</strong></div>
-                                </li> --}}
                             </ul>
                         </div>
                         <div class="sidebar-list-job">

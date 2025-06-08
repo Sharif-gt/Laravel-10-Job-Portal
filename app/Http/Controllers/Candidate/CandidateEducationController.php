@@ -15,7 +15,7 @@ class CandidateEducationController extends Controller
      */
     public function index()
     {
-        $candidateEducation = CandidateEducation::where('candidate_id', auth()->user()->candidateProfile->id)->orderBy('id', 'DESC')->get();
+        $candidateEducation = CandidateEducation::where('candidate_id', auth()->user()->candidateProfile?->id)->orderBy('id', 'DESC')->get();
 
         return view('frontend.candidate-dashboard.ajax-education-table', compact('candidateEducation'))->render();
     }
@@ -34,7 +34,7 @@ class CandidateEducationController extends Controller
     public function store(CandidateEducationStoreRequest $request): Response
     {
         CandidateEducation::create([
-            'candidate_id' => auth()->user()->candidateProfile->id,
+            'candidate_id' => auth()->user()->candidateProfile?->id,
             'level' => $request->level,
             'degree' => $request->degree,
             'year' => $request->year,
@@ -42,14 +42,6 @@ class CandidateEducationController extends Controller
         ]);
 
         return response(['message' => 'Created Successfully.'], 200);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -67,7 +59,7 @@ class CandidateEducationController extends Controller
     public function update(CandidateEducationStoreRequest $request, string $id): Response
     {
         $education = CandidateEducation::findOrFail($id);
-        if (auth()->user()->candidateProfile->id !== $education->candidate_id) {
+        if (auth()->user()->candidateProfile?->id !== $education->candidate_id) {
             abort(404);
         }
         $education->level = $request->level;
@@ -86,7 +78,7 @@ class CandidateEducationController extends Controller
     {
         try {
             $candidateEducation = CandidateEducation::findOrFail($id);
-            if (auth()->user()->candidateProfile->id !== $candidateEducation->candidate_id) {
+            if (auth()->user()->candidateProfile?->id !== $candidateEducation->candidate_id) {
                 abort(404);
             }
             $candidateEducation->delete();

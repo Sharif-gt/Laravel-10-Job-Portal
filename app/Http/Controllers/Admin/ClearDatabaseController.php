@@ -32,6 +32,11 @@ class ClearDatabaseController extends Controller
             Artisan::call('db:seed', ['--class' => 'SiteSettingSeeder']);
             Artisan::call('db:seed', ['--class' => 'MenuSeeder']);
             Artisan::call('db:seed', ['--class' => 'PaymentSettingSeeder']);
+            Artisan::call('db:seed', ['--class' => 'ExperienceSeeder']);
+            Artisan::call('db:seed', ['--class' => 'JobTagSeeder']);
+            Artisan::call('db:seed', ['--class' => 'JobTypeSeeder']);
+            Artisan::call('db:seed', ['--class' => 'SalaryTypeSeeder']);
+            Artisan::call('db:seed', ['--class' => 'TeamSizeSeeder']);
 
             //delete files
             $this->deleteFiles();

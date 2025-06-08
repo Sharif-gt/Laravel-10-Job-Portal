@@ -26,7 +26,7 @@
                             </div>
                             <a href="{{ route('admin.languages.create') }}" class="btn btn-icon icon-left btn-success"><i
                                     class="far fa-edit"></i> Create
-                                City</a>
+                                Languages</a>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">

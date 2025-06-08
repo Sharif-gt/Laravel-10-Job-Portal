@@ -77,31 +77,13 @@
                                                 </a>
                                                 <span
                                                     class="font-xs color-text-mutted">{{ $candidate?->profession?->name }}</span>
-                                                {{-- <div class="rate-reviews-small pt-5">
-                                                    <span>
-                                                        <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                                                    </span>
-                                                    <span>
-                                                        <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                                                    </span>
-                                                    <span>
-                                                        <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                                                    </span>
-                                                    <span>
-                                                        <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                                                    </span>
-                                                    <span>
-                                                        <img src="assets/imgs/template/icons/star.svg" alt="joblist">
-                                                    </span>
-                                                    <span class="ml-10 color-text-mutted font-xs">(65)</span>
-                                                </div> --}}
                                             </div>
                                         </div>
                                         <div class="card-block-info">
                                             <p class="font-xs color-text-paragraph-2">{!! Str::limit($candidate?->bio, 100) !!}</p>
                                             <div class="card-2-bottom card-2-bottom-candidate mt-30">
                                                 <div class="text-start">
-                                                    @foreach ($candidate->skill as $skills)
+                                                    @foreach ($candidate?->skill as $skills)
                                                         @if ($loop->index <= 5)
                                                             <a class="btn btn-tags-sm mb-10 mr-5"
                                                                 href="jobs-grid.html">{{ $skills?->skillName?->name }}</a>
@@ -116,19 +98,13 @@
                                                                 class="font-sm color-text-mutted">{{ $candidate?->candidateState?->name }},
                                                                 {{ $candidate?->candidateCountry?->name }}</span></span>
                                                     </div>
-                                                    {{-- <div class="col-6"><span
-                                                            class="d-flex justify-content-end align-items-center"><i
-                                                                class="fi-rr-clock mr-5"></i><span
-                                                                class="font-sm color-brand-1">$45 /
-                                                                hour</span></span>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @empty
-                                <div class="col-xl-12 col-12 card-2-bottom mt-20">No Data Found</div>
+                                <div class="col-xl-12 col-12 card-2-bottom mt-100 text-center">No Data Found</div>
                             @endforelse
                         </div>
                         <div class="paginations">
@@ -136,12 +112,6 @@
                                 @if ($candidates->hasPages())
                                     {{ $candidates->withQueryString()->links() }}
                                 @endif
-                                {{-- <li><a class="pager-prev" href="#"><i class="fas fa-arrow-left"></i></a></li>
-                            <li><a class="pager-number" href="#">1</a></li>
-                            <li><a class="pager-number" href="#">2</a></li>
-                            <li><a class="pager-number active" href="#">3</a></li>
-                            <li><a class="pager-number" href="#">4</a></li>
-                            <li><a class="pager-next" href="#"><i class="fas fa-arrow-right"></i></a></li> --}}
                             </ul>
                         </div>
                     </div>
