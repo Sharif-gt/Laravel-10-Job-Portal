@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AccessManagementController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -59,6 +60,11 @@ Route::group(['middleware' => ['guest:admin'], 'prefix' => 'admin', 'as' => 'adm
 });
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
+
+    /** admin profile */
+    Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile.index');
+    Route::post('/update-profile', [AdminProfileController::class, 'update'])->name('profile.update');
+    Route::post('/change-password', [AdminProfileController::class, 'changePassword'])->name('change-password');
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
@@ -149,28 +155,4 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admi
     /** Clear Database Routs */
     Route::get('clear', [ClearDatabaseController::class, 'index'])->name('clear');
     Route::post('clear-database', [ClearDatabaseController::class, 'clearDatabase'])->name('clear-database');
-
-    /** Hero Section Routs */
-    // Route::get('hero-section', [HeroSectionController::class, 'index'])->name('hero-section.index');
-    // Route::post('hero-section/update/1', [HeroSectionController::class, 'update'])->name('hero-section.update');
-
-    // Route::get('verify-email', EmailVerificationPromptController::class)
-    //     ->name('verification.notice');
-
-    // Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
-    //     ->middleware(['signed', 'throttle:6,1'])
-    //     ->name('verification.verify');
-
-    // Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-    //     ->middleware('throttle:6,1')
-    //     ->name('verification.send');
-
-    // Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
-    //     ->name('password.confirm');
-
-    // Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
-
-    // Route::put('password', [PasswordController::class, 'update'])->name('password.update');
-
-
 });
